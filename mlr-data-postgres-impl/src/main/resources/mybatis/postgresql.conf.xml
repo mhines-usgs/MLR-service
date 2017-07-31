@@ -15,7 +15,7 @@
 	</settings-->
 
 	<typeAliases>
-		<typeAlias alias="MLEntity" type="gov.usgs.wma.mlr.ml.models.MLEntity"/>
+		<typeAlias alias="MonitoringLocation" type="gov.usgs.wma.mlr.ml.models.MonitoringLocation"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -31,7 +31,7 @@
 	</environments>
  	
 	<mappers>
-		<mapper resource="mybatis/MLEntityMapper.xml"/>
+		<mapper resource="mybatis/postgresql/MonitoringLocationMapper.xml"/>
 	</mappers>
     
 </configuration>
