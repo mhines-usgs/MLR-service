@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import gov.usgs.wma.mlr.ml.mapper.MonitoringLocationMapper;
+//import gov.usgs.wma.mlr.ml.model.MonitoringLocation;
 
 /**
  *
@@ -25,30 +26,40 @@ public class MonitoringLocationDAO {
 		this.sessionFactory = MLDAOFacotry.getSqlSessionFactory();
 	}
 	
-	public List<Object> getMonitoringLocations() {
+	public List<MonitoringLocation> getMonitoringLocations() {
 		return getMonitoringLocations(new HashMap<String,Object>());
 	}
 	
-	public Object getMonitoringLocation(String id){
-		List<Object> mlEntities = null;
+	public MonitoringLocation getMonitoringLocation(String id){
+		MonitoringLocation returnLocation = null;
+		List<MonitoringLocation> monitoringLocations = null;
 		Map<String,Object> params = new HashMap<>();
 		
 		params.put("id", id);
 		
-		getMonitoringLocations(params);
+		monitoringLocations = getMonitoringLocations(params);
 		
-		return mlEntities;
+		if(monitoringLocations != null){
+			if(monitoringLocations.size() > 1){
+				LOG.error("Duplicate MonitoringLocation Entities Found for ID: " + id);
+			} else if(monitoringLocations.size() == 1) {
+				returnLocation = monitoringLocations.toArray()[0];
+			}
+		}
+		
+		
+		return returnLocation;
 	}
 	
-	public List<Object> getMonitoringLocations(Map<String, Object> params) {
-		List<Object> mlEntities = null;
+	public List<MonitoringLocation> getMonitoringLocations(Map<String, Object> params) {
+		List<MonitoringLocation> monitoringLocations = null;
 		
 		try (SqlSession session = sessionFactory.openSession()) {
 			LOG.debug("Loading ML Entities for params", params.toString());
 			MonitoringLocationMapper mapper = session.getMapper(MonitoringLocationMapper.class);
-			mlEntities = mapper.getMonitoringLocations(params);
+			monitoringLocations = mapper.getMonitoringLocations(params);
 		}
 		
-		return mlEntities;
+		return monitoringLocations;
 	}
 }

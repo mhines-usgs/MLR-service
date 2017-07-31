@@ -7,8 +7,13 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import gov.usgs.wma.util.ConfigurationLoaderSingleton;
+
 public class MonitoringLocationDAOFactory {
 	private static final Object syncLock = new Object();
+	
+	private static final String MONITORING_LOCATION_DATA_INTERFACE_PROPERTY = "ml.data.interface";
+	private static final String DEFAULT_MYBATIS_CONFIGURATION = "postgresql.xml";
 	
 	private SqlSessionFactory sqlSessionFactory;
 	private Properties properties;
@@ -37,8 +42,9 @@ public class MonitoringLocationDAOFactory {
 	public static SqlSessionFactory buildSqlSessionFactory(Properties properties) throws RuntimeException {
 		
 		try {
-			//Parameterize this from DROP
-			String resource = "mybatis/mybatis.conf.xml";
+			//Dynamically load the MyBatis Configuration based in order to specify the interface we want to use
+			String mybatisProperty = ConfigurationLoaderSingleton.getProperty(MONITORING_LOCATION_DATA_INTERFACE_PROPERTY);
+			String resource =  mybatisProperty != null ? mybatisProperty : DEFAULT_MYBATIS_CONFIGURATION;
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, properties);
