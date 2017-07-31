@@ -8,8 +8,8 @@ import java.util.Map;
  * 
  * @author zmoore
  */
-public interface MLEntityMapper {
-	List<Object> getMonitoringLocation(Map<String, Object> parms);
+public interface MonitoringLocationMapper {
+	List<Object> getMonitoringLocations(Map<String, Object> parms);
 	int getCount();
 	void insertMonitoringLocation(Object record);
 }

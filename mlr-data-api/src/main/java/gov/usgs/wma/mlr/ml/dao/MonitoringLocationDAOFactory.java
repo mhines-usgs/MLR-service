@@ -7,13 +7,13 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class MLEntityDAOFactory {
+public class MonitoringLocationDAOFactory {
 	private static final Object syncLock = new Object();
 	
 	private SqlSessionFactory sqlSessionFactory;
 	private Properties properties;
 	
-	public MLEntityDAOFactory(Properties properties) {
+	public MonitoringLocationDAOFactory(Properties properties) {
 		this.properties = properties;
 	}
 	
