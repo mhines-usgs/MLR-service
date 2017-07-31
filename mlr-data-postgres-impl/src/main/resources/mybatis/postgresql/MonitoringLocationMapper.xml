@@ -4,32 +4,48 @@
 <mapper namespace="gov.usgs.wma.ml.mlr.mapper.MonitoringLocationMapper">
 	
 	<!--Map Returned Columns to MLEntity member variables-->
-	<resultMap id="MonitoringLocationRecordMap" type="MonitoringLocation">
-		<result property="id" column="ID"/>
+	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
+		<result property="id" column="id"/>
+		<result property="id" column="location_number"/>
+		<result property="id" column="name"/>
+		<result property="id" column="type_id"/>
+		<result property="id" column="primary_agency_id"/>
+		<result property="id" column="feature_id"/>
+		<result property="id" column="country_id"/>
+		<result property="id" column="state_id"/>
+		<result property="id" column="county_id"/>
+		<result property="id" column="minor_civil_division_id"/>
+		<result property="id" column="hydrologic_unit_id"/>
+		<result property="id" column="national_aquifer_id"/>
+		<result property="id" column="aquifer_id"/>
+		<result property="id" column="create_date"/>
+		<result property="id" column="create_user"/>
+		<result property="id" column="last_update"/>
+		<result property="id" column="last_update_user"/>
 	</resultMap>
 	
 	<!--Returns a count of the number of MLEntity instances in the table-->
 	<select id="getCount" parameterType="map" resultType="int">
 		SELECT
 			count(*)
-		FROM ML_ENTITY_TABLE
+		FROM monitoring_location
 			<include refid="whereAndOrder"/>
 	</select>
 	
 	<!--Returns a list of retrieved MLEntity records-->
-	<select id="getMonitoringLocations" resultMap="MonitoringLocationRecordMap" fetchSize="250000" >
+	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap" fetchSize="250000" >
 		SELECT
 			<include refid="MonitoringLocationColumns"/>
-		FROM ML_ENTITY_TABLE
+		FROM monitoring_location
 			<include refid="whereAndOrder"/>
 	</select>
 	
 	<!--Where caluses for dealing with optional parameters and ordering-->
 	<sql id="whereAndOrder">
 		<where>
-			<if test="id != null">AND ID = '${id}'</if>
+			<if test="id != null">AND id = '${id}'</if>
 		</where>
-		ORDER BY ID
+		ORDER BY id
 	</sql>
 	
 	<!--List of Columns to select from the ML_ENTITY_TABLE table-->
