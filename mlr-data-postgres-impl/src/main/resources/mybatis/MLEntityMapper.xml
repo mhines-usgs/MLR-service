@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="gov.usgs.wma.ml.mlr.mapper.MLEntityMapper">
+	
+	<!--Map Returned Columns to MLEntity member variables-->
+	<resultMap id="MLEntityRecordMap" type="MLEntity">
+		<result property="id" column="ID"/>
+	</resultMap>
+	
+	<!--Returns a count of the number of MLEntity instances in the table-->
+	<select id="getCount" parameterType="map" resultType="int">
+		SELECT
+			count(*)
+		FROM ML_ENTITY_TABLE
+			<include refid="whereAndOrder"/>
+	</select>
+	
+	<!--Returns a list of retrieved MLEntity records-->
+	<select id="getMLEntity" resultMap="MLEntityRecordMap" fetchSize="250000" >
+		SELECT
+			<include refid="mlEntityColumns"/>
+		FROM ML_ENTITY_TABLE
+			<include refid="whereAndOrder"/>
+	</select>
+	
+	<!--Where caluses for dealing with optional parameters and ordering-->
+	<sql id="whereAndOrder">
+		<where>
+			<if test="id != null">AND ID = '${id}'</if>
+		</where>
+		ORDER BY ID
+	</sql>
+	
+	<!--List of Columns to select from the ML_ENTITY_TABLE table-->
+	<sql id="mlEntityColumns">
+		ID
+	</sql>
+</mapper>
