@@ -33,7 +33,7 @@
 			<column 
 				name="type_id" 
 				type="INT4"
-				remarks="the type of mmonitoring location"
+				remarks="the type of monitoring location"
 			/>
 			<column name="primary_agency_id" type="INT4">
 				<constraints nullable="false" />
