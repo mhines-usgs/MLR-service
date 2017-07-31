@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+	<changeSet author="kmschoep" id="add_monitoring_location">
+		<comment>
+                    Creates monitoring location table to store the modern monitoring location registry information
+                </comment>
+
+		<createTable 
+			tableName="monitoring_location"
+			schemaName="monitoring_location_registry"
+			remarks="stores the modern monitoring location registry information">
+			<column 
+				name="id" 
+				type="INT4"
+				remarks="artificial key for the location, assigned by database">
+				<constraints nullable="false" />
+			</column>
+			<column 
+				name="location_number" 
+				type="VARCHAR(15)"
+				remarks="natural site number for site"
+			/>
+			<column 
+				name="name" 
+				type="VARCHAR(50)"
+				remarks="the name of the monitoring location"
+			/>
+			<column 
+				name="type_id" 
+				type="INT4"
+				remarks="the type of mmonitoring location"
+			/>
+			<column name="country_id" type="INT4"/>
+			<column name="state_id" type="INT4"/>
+			<column name="county_id" type="INT4"/>
+			<column name="minor_civil_division_id" type="INT4"/>
+			<column name="hydrologic_unit_id" type="INT4"/>
+			<column name="national_aquifer_id" type="INT4"/>
+			<column name="aquifer_id" type="INT4"/>
+			<column name="create_date" type="TIMESTAMP"/>
+			<column name="create_user" type="VARCHAR2(20)"/>
+			<column name="last_update" type="TIMESTAMP"/>
+			<column name="last_update_user" type="VARCHAR2(20)"/>
+		</createTable>
+		<addPrimaryKey tableName="monitoring_location" columnNames="id" constraintName="monitoring_location_id_pkey" />
+	</changeSet>
+	
+	
+</databaseChangeLog>
