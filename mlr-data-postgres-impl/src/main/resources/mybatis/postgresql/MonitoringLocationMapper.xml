@@ -6,22 +6,22 @@
 	<!--Map Returned Columns to MLEntity member variables-->
 	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
 		<result property="id" column="id"/>
-		<result property="id" column="location_number"/>
-		<result property="id" column="name"/>
-		<result property="id" column="type_id"/>
-		<result property="id" column="primary_agency_id"/>
-		<result property="id" column="feature_id"/>
-		<result property="id" column="country_id"/>
-		<result property="id" column="state_id"/>
-		<result property="id" column="county_id"/>
-		<result property="id" column="minor_civil_division_id"/>
-		<result property="id" column="hydrologic_unit_id"/>
-		<result property="id" column="national_aquifer_id"/>
-		<result property="id" column="aquifer_id"/>
-		<result property="id" column="create_date"/>
-		<result property="id" column="create_user"/>
-		<result property="id" column="last_update"/>
-		<result property="id" column="last_update_user"/>
+		<result property="locationNumber" column="location_number"/>
+		<result property="name" column="name"/>
+		<result property="monitoringLocationType" column="type_id"/>
+		<result property="" column="primary_agency_id"/>
+		<result property="" column="feature_id"/>
+		<result property="country" column="country_id"/>
+		<result property="state" column="state_id"/>
+		<result property="county" column="county_id"/>
+		<result property="minorCivilDivisionCode" column="minor_civil_division_id"/>
+		<result property="hydrologicUnit" column="hydrologic_unit_id"/>
+		<result property="nationalAquifer" column="national_aquifer_id"/>
+		<result property="aquifer" column="aquifer_id"/>
+		<result property="" column="create_date"/>
+		<result property="" column="create_user"/>
+		<result property="" column="last_update"/>
+		<result property="" column="last_update_user"/>
 	</resultMap>
 	
 	<!--Returns a count of the number of MLEntity instances in the table-->
