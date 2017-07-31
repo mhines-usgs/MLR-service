@@ -1,4 +1,4 @@
-package gov.usgs.model;
+package gov.usgs.wma.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,20 +9,19 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Geometry", propOrder
-	= {"type"
+@XmlType(name = "Feature", propOrder
+	= {"type", "geometry", "pointProperties"
 	})
 
-@XmlRootElement(name = "Geometry")
-//@ApiModel(description = "GeoJSon geometry")
-public class Geometry {
+@XmlRootElement(name = "Feature")
+public class Feature {
 
 	@XmlType(name = "TypeEnum")
 	@XmlEnum(String.class)
 	public enum TypeEnum {
 
-		@XmlEnumValue("Point")
-		POINT(String.valueOf("Point"));
+		@XmlEnumValue("Feature")
+		FEATURE(String.valueOf("Feature"));
 
 		private String value;
 
@@ -50,11 +49,16 @@ public class Geometry {
 	}
 
 	@XmlElement(name = "type")
-//	@ApiModelProperty(required = true, value = "the geometry type")
 	private TypeEnum type = null;
 
+	@XmlElement(name = "geometry")
+	private Point geometry = null;
+
+	@XmlElement(name = "pointProperties")
+	private PointProperties pointProperties = null;
+
 	/**
-	 * the geometry type
+	 * Get type
 	 *
 	 * @return type
   *
@@ -67,12 +71,42 @@ public class Geometry {
 		this.type = type;
 	}
 
+	/**
+	 * Get geometry
+	 *
+	 * @return geometry
+  *
+	 */
+	public Point getGeometry() {
+		return geometry;
+	}
+
+	public void setGeometry(Point geometry) {
+		this.geometry = geometry;
+	}
+
+	/**
+	 * Get pointProperties
+	 *
+	 * @return pointProperties
+  *
+	 */
+	public PointProperties getPointProperties() {
+		return pointProperties;
+	}
+
+	public void setPointProperties(PointProperties pointProperties) {
+		this.pointProperties = pointProperties;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("class Geometry {\n");
+		sb.append("class Feature {\n");
 
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
+		sb.append("    geometry: ").append(toIndentedString(geometry)).append("\n");
+		sb.append("    pointProperties: ").append(toIndentedString(pointProperties)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}

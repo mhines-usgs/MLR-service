@@ -1,4 +1,4 @@
-package gov.usgs.model;
+package gov.usgs.wma.model;
 
 import java.util.ArrayList;
 import java.util.List;

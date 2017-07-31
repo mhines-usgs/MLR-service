@@ -1,42 +1,25 @@
-package gov.usgs.model;
+package gov.usgs.wma.model;
 
-import javax.xml.bind.annotation.XmlElement;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Point", propOrder
-	= {"coordinates"
-	})
+
+@XmlType(name = "Point3d")
 
 /**
- * GeoJson geometry
+ * An array that follows the order of [longitude, latitude, elevation]"
  */
-public class Point extends Geometry {
-
-	@XmlElement(name = "coordinates")
-	private Point3d coordinates = null;
-
-	/**
-	 * Get coordinates
-	 *
-	 * @return coordinates
-	 */
-	public Point3d getCoordinates() {
-		return coordinates;
-	}
-
-	public void setCoordinates(Point3d coordinates) {
-		this.coordinates = coordinates;
-	}
+public class Point3d extends ArrayList<BigDecimal> {
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("class Point {\n");
+		sb.append("class Point3d {\n");
 		sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-		sb.append("    coordinates: ").append(toIndentedString(coordinates)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}

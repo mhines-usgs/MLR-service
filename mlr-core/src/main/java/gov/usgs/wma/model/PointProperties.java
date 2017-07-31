@@ -1,4 +1,4 @@
-package gov.usgs.model;
+package gov.usgs.wma.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
