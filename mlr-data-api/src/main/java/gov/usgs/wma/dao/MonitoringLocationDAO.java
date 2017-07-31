@@ -1,4 +1,4 @@
-package gov.usgs.wma.mlr.ml.dao;
+package gov.usgs.wma.dao;
 
 
 import java.util.HashMap;
@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import gov.usgs.wma.mlr.ml.mapper.MonitoringLocationMapper;
-//import gov.usgs.wma.mlr.ml.model.MonitoringLocation;
+import gov.usgs.wma.mapper.MonitoringLocationMapper;
+import gov.usgs.wma.model.MonitoringLocation;
 
 /**
  *
@@ -43,7 +43,7 @@ public class MonitoringLocationDAO {
 			if(monitoringLocations.size() > 1){
 				LOG.error("Duplicate MonitoringLocation Entities Found for ID: " + id);
 			} else if(monitoringLocations.size() == 1) {
-				returnLocation = monitoringLocations.toArray()[0];
+				returnLocation = monitoringLocations.get(0);
 			}
 		}
 		

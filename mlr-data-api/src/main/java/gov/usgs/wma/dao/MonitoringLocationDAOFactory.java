@@ -1,4 +1,4 @@
-package gov.usgs.wma.mlr.ml.dao;
+package gov.usgs.wma.dao;
 
 import java.io.InputStream;
 import java.util.Properties;
