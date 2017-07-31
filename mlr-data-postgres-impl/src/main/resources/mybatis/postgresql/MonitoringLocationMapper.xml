@@ -3,7 +3,7 @@
 
 <mapper namespace="gov.usgs.wma.ml.mlr.mapper.MonitoringLocationMapper">
 	
-	<!--Map Returned Columns to MLEntity member variables-->
+	<!--Map Monitoring Locations-->
 	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
 		<result property="id" column="id"/>
 		<result property="locationNumber" column="location_number"/>
@@ -23,6 +23,72 @@
 		<result property="" column="last_update"/>
 		<result property="" column="last_update_user"/>
 	</resultMap>
+	
+	<!-- Map Agnecies-->
+	<resultMap id="AgencyMap" type="Agency">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<!-- Map Features-->
+	<resultMap id="FeatureMap" type="Feature">
+		<result property="type" column="type"/>
+		<result property="geometry" column="geometry"/>
+		<result property="pointProperties" column="point_properties"/>
+	</resultMap>
+	
+	<!-- Map GeoCodeBases-->
+	<resultMap id="GeoCodeBaseMap" type="GeoCodeBase">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<!-- Map Geometries-->
+	<resultMap id="GeometryMap" type="Geometry">
+		<result property="type" column="type"/>
+	</resultMap>
+	
+	<!-- Map Monitoring Location Aquifers-->
+	<resultMap id="MonitoringLocationAquiferMap" type="MonitoringLocationAquifer">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+		<result property="nationalAquifer" column="national_aquifer"/>
+	</resultMap>
+	
+	<!-- Map Monitoring Location Types-->
+	<resultMap id="MonitoringLocationTypeMap" type="MonitoringLocationType">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<!-- Map Points-->
+	<resultMap id="PointMap" type="Point" extends="GeometryMap">
+		<result property="coordinates" column="coordinates"/>
+	</resultMap>
+		
+	<!-- Map Point Properties-->
+	<resultMap id="PointPropertiesMap" type="PointProperties">
+		<result property="horizontalAccuracyCode" column="horizontal_accuracy_code"/>
+		<result property="horizontalDatum" column="horizontal_datum"/>
+		<result property="horizontalMethodCode" column="horizontal_method_code"/>
+		<result property="altitudeAccuracy" column="altitude_accuracy"/>
+		<result property="altitudeDatum" column="altitude_datum"/>
+		<result property="altitudeMethodCode" column="altitude_method_code"/>
+	</resultMap>
+	
+	<!-- Map Uses-->
+	<resultMap id="UseMap" type="Use">
+		<result property="id" column="id"/>
+		<result property="rank" column="rank/>
+		<result property="code" column="code"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	
 	
 	<!--Returns a count of the number of MLEntity instances in the table-->
 	<select id="getCount" parameterType="map" resultType="int">
@@ -50,6 +116,6 @@
 	
 	<!--List of Columns to select from the ML_ENTITY_TABLE table-->
 	<sql id="MonitoringLocationColumns">
-		ID
+		id
 	</sql>
 </mapper>
