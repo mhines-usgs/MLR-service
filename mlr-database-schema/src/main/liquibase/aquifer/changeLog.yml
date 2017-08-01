@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgres
+
+  - changeSet:
+      author: mhines
+      id: "create.table.aquifer"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: aquifer
+      changes:
+        - sqlFile:
+            path: aquifer.sql
+            relativeToChangelogFile: true
+        - rollback: drop table mlr_data.aquifer;
