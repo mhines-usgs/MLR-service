@@ -10,6 +10,6 @@
 			<column name="nationalaquifer" type="text" />
         </createTable>
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="aquifer" constraintName="fk_aquifer_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="aquifer_id" referencedTableName="monitoring_location"/>
-		<addForeignKeyConstraint baseColumnNames="id" baseTableName="aquifer" constraintName="fk_national_aquifer_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="national_aquifer_id" referencedTableName="monitoring_location"/>
+		<addForeignKeyConstraint baseColumnNames="nationalaquifer" baseTableName="national_aquifer" constraintName="fk_national_aquifer_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="national_aquifer"/>
     </changeSet>
 </databaseChangeLog>
