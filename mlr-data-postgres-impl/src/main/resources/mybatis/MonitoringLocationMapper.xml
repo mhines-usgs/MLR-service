@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="gov.usgs.wma.mapper.MonitoringLocationMapper">
+	<!--Map Monitoring Locations-->
+	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
+		<id property="id" column="id"/>
+		<result property="locationNumber" column="location_number"/>
+		<result property="name" column="name"/>
+		<result property="number" column="number"/>
+		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
+		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
+		<association property="primaryAgency" resultMap="AgencyMap"/>
+		<association property="locationGeometry" resultMap="FeatureMap"/>
+		<association property="country" resultMap="GeoCodeBaseMap"/>
+		<association property="state" resultMap="GeoCodeBaseMap"/>
+		<association property="county" resultMap="GeoCodeBaseMap"/>
+		<association property="minorCivilDivisionCode" resultMap="GeoCodeBaseMap"/>
+		<association property="hydrologicUnit" resultMap="GeoCodeBaseMap"/>
+		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
+		<association property="aquifer" resultMap="MonitoringLocationAquiferMap"/>
+		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use"/>
+		<result property="" column="create_date"/>
+		<result property="" column="create_user"/>
+		<result property="" column="last_update"/>
+		<result property="" column="last_update_user"/>
+	</resultMap>
+	
+	<!-- Map Agnecies-->
+	<resultMap id="AgencyMap" type="Agency">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<!-- Map Features-->
+	<resultMap id="FeatureMap" type="Feature">
+		<id column="id"/>
+		<result property="type" column="type"/>
+		<association property="geometry" resultMap="PointMap"/>
+		<result property="pointProperties" column="point_properties"/>
+	</resultMap>
+	
+	<!-- Map GeoCodeBases-->
+	<resultMap id="GeoCodeBaseMap" type="GeoCodeBase">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<!-- Map Geometries-->
+	<resultMap id="GeometryMap" type="Geometry">
+		<result property="type" column="type"/>
+	</resultMap>
+	
+	<!-- Map Points-->
+	<resultMap id="PointMap" type="Point" extends="GeometryMap">
+		<collection property="coordinates" column="coordinates" javaType="Point3D" ofType="BigDecimal"/>
+	</resultMap>
+		
+	<!-- Map Point Properties-->
+	<resultMap id="PointPropertiesMap" type="PointProperties">
+		<result property="horizontalAccuracyCode" column="horizontal_accuracy_code"/>
+		<result property="horizontalDatum" column="horizontal_datum"/>
+		<result property="horizontalMethodCode" column="horizontal_method_code"/>
+		<result property="altitudeAccuracy" column="altitude_accuracy"/>
+		<result property="altitudeDatum" column="altitude_datum"/>
+		<result property="altitudeMethodCode" column="altitude_method_code"/>
+	</resultMap>
+	
+	<!-- Map Monitoring Location Aquifers-->
+	<resultMap id="MonitoringLocationAquiferMap" type="MonitoringLocationAquifer">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
+	</resultMap>
+	
+	<!-- Map Monitoring Location Types-->
+	<resultMap id="MonitoringLocationTypeMap" type="MonitoringLocationType">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<!-- Map Uses-->
+	<resultMap id="UseMap" type="Use">
+		<id property="id" column="id"/>
+		<result property="rank" column="rank"/>
+		<result property="code" column="code"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	
+	
+	<!--Returns a count of the number of MLEntity instances in the table-->
+	<select id="getCount" parameterType="map" resultType="int">
+		SELECT
+			count(*)
+		FROM monitoring_location
+			<include refid="basicWhereAndOrder"/>
+	</select>
+	
+	<!--Returns a list of retrieved MLEntity records-->
+	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap" fetchSize="250000" >
+		SELECT *
+		FROM monitoring_location
+			<include refid="basicWhereAndOrder"/>
+	</select>
+	
+	<!--Where caluses for dealing with optional parameters and ordering-->
+	<!--TODO: Add additional query options here-->
+	<sql id="basicWhereAndOrder">
+		<where>
+			<if test="id != null">AND id = #{id}</if>
+			<if test="locationNumber != null">AND location_number = '#{locationNumber}'</if>
+			<if test="name != null">AND name = '#{name}'</if>
+			<if test="number != null">AND number = #{number}></if>
+		</where>
+		ORDER BY id
+	</sql>
+</mapper>
