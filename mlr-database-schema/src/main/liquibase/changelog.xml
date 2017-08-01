@@ -8,4 +8,5 @@
         logicalFilePath="liquibaseChangeSet">
     <include file="agency.xml" relativeToChangelogFile="true"/>
 	<include file="aquifer.xml" relativeToChangelogFile="true" />
+	<include file="country.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
