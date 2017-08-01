@@ -12,9 +12,9 @@ import gov.usgs.wma.util.ConfigurationLoaderSingleton;
 public class MonitoringLocationDAOFactory {
 	private static final Object syncLock = new Object();
 	
-	private static final String MONITORING_LOCATION_DATA_INTERFACE_PROPERTY = "ml.data.interface";
+	private static final String MONITORING_LOCATION_DATA_INTERFACE_PROPERTY = "ml.data.mybatis.interface";
 	private static final String MYBATIS_CONFIGURATION_BASE_DIRECOTRY = "mybatis/";
-	private static final String DEFAULT_MYBATIS_CONFIGURATION = "postgresql.xml";
+	private static final String DEFAULT_MYBATIS_CONFIGURATION = "postgresql.conf.xml";
 	
 	private SqlSessionFactory sqlSessionFactory;
 	private Properties properties;
