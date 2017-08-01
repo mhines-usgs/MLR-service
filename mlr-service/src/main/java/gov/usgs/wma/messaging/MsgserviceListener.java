@@ -35,7 +35,7 @@ public class MsgserviceListener implements ServletContextListener {
 		
 		try {
 			MicroserviceUtils.initService(MessageConfiguration.MLR_SERVICE_NAME, handlers);
-		} catch (MqConnectionException e) {
+		} catch (Exception e) {
 			log.warn("Failed to initialize MQ listeners", e);
 		}
 	}
