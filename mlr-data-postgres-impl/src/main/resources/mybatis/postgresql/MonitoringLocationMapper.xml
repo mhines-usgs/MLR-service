@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
-<mapper namespace="gov.usgs.wma.ml.mlr.mapper.MonitoringLocationMapper">
-	
+<mapper namespace="gov.usgs.wma.mapper.MonitoringLocationMapper">
 	<!--Map Monitoring Locations-->
 	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
-		<result property="id" column="id"/>
+		<id property="id" column="id"/>
 		<result property="locationNumber" column="location_number"/>
 		<result property="name" column="name"/>
-		<result property="monitoringLocationType" column="type_id"/>
-		<result property="" column="primary_agency_id"/>
-		<result property="" column="feature_id"/>
-		<result property="country" column="country_id"/>
-		<result property="state" column="state_id"/>
-		<result property="county" column="county_id"/>
-		<result property="minorCivilDivisionCode" column="minor_civil_division_id"/>
-		<result property="hydrologicUnit" column="hydrologic_unit_id"/>
-		<result property="nationalAquifer" column="national_aquifer_id"/>
-		<result property="aquifer" column="aquifer_id"/>
+		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
+		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
+		<association property="primaryAgency" resultMap="AgencyMap"/>
+		<association property="locationGeometry" resultMap="FeatureMap"/>
+		<association property="country" resultMap="GeoCodeBaseMap"/>
+		<association property="state" resultMap="GeoCodeBaseMap"/>
+		<association property="county" resultMap="GeoCodeBaseMap"/>
+		<association property="minorCivilDivisionCode" resultMap="GeoCodeBaseMap"/>
+		<association property="hydrologicUnit" resultMap="GeoCodeBaseMap"/>
+		<association property="nationalAquifer" resultMap="GeoCodeBaseMap"/>
+		<association property="aquifer" resultMap="MonitoringLocationAquiferMap"/>
+		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use"/>
 		<result property="" column="create_date"/>
 		<result property="" column="create_user"/>
 		<result property="" column="last_update"/>
@@ -26,21 +27,22 @@
 	
 	<!-- Map Agnecies-->
 	<resultMap id="AgencyMap" type="Agency">
-		<result property="id" column="id"/>
+		<id property="id" column="id"/>
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
 	</resultMap>
 	
 	<!-- Map Features-->
 	<resultMap id="FeatureMap" type="Feature">
+		<id column="id"/>
 		<result property="type" column="type"/>
-		<result property="geometry" column="geometry"/>
+		<association property="geometry" resultMap="PointMap"/>
 		<result property="pointProperties" column="point_properties"/>
 	</resultMap>
 	
 	<!-- Map GeoCodeBases-->
 	<resultMap id="GeoCodeBaseMap" type="GeoCodeBase">
-		<result property="id" column="id"/>
+		<id property="id" column="id"/>
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
 	</resultMap>
@@ -50,24 +52,9 @@
 		<result property="type" column="type"/>
 	</resultMap>
 	
-	<!-- Map Monitoring Location Aquifers-->
-	<resultMap id="MonitoringLocationAquiferMap" type="MonitoringLocationAquifer">
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="code" column="code"/>
-		<result property="nationalAquifer" column="national_aquifer"/>
-	</resultMap>
-	
-	<!-- Map Monitoring Location Types-->
-	<resultMap id="MonitoringLocationTypeMap" type="MonitoringLocationType">
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="code" column="code"/>
-	</resultMap>
-	
 	<!-- Map Points-->
 	<resultMap id="PointMap" type="Point" extends="GeometryMap">
-		<result property="coordinates" column="coordinates"/>
+		<collection property="coordinates" column="coordinates" javaType="Point3D" ofType="BigDecimal"/>
 	</resultMap>
 		
 	<!-- Map Point Properties-->
@@ -80,10 +67,25 @@
 		<result property="altitudeMethodCode" column="altitude_method_code"/>
 	</resultMap>
 	
+	<!-- Map Monitoring Location Aquifers-->
+	<resultMap id="MonitoringLocationAquiferMap" type="MonitoringLocationAquifer">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
+	</resultMap>
+	
+	<!-- Map Monitoring Location Types-->
+	<resultMap id="MonitoringLocationTypeMap" type="MonitoringLocationType">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
 	<!-- Map Uses-->
 	<resultMap id="UseMap" type="Use">
-		<result property="id" column="id"/>
-		<result property="rank" column="rank/>
+		<id property="id" column="id"/>
+		<result property="rank" column="rank"/>
 		<result property="code" column="code"/>
 		<result property="name" column="name"/>
 	</resultMap>
@@ -100,8 +102,7 @@
 	
 	<!--Returns a list of retrieved MLEntity records-->
 	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap" fetchSize="250000" >
-		SELECT
-			<include refid="MonitoringLocationColumns"/>
+		SELECT *
 		FROM monitoring_location
 			<include refid="whereAndOrder"/>
 	</select>
@@ -110,12 +111,23 @@
 	<sql id="whereAndOrder">
 		<where>
 			<if test="id != null">AND id = '${id}'</if>
+			<if test="locationNumber != null">AND id = '${id}'</if>
+			<if test="name != null">AND id = '${id}'</if>
+			<if test="monitoringLocationType != null">AND id = '${id}'</if>
+			<if test="_ != null">AND _ = '${_}'</if>
+			<if test="_ != null">AND _ = '${_}'</if>
+			<if test="country != null">AND id = '${id}'</if>
+			<if test="state != null">AND id = '${id}'</if>
+			<if test="county != null">AND id = '${id}'</if>
+			<if test="minorCivilDivisionCode != null">AND id = '${id}'</if>
+			<if test="hydrologicUnit != null">AND id = '${id}'</if>
+			<if test="nationalAquifer != null">AND id = '${id}'</if>
+			<if test="aquifer null">AND id = '${id}'</if>
+			<if test="_ != null">AND _ = '${_}'</if>
+			<if test="_ != null">AND _ = '${_}'</if>
+			<if test="_ != null">AND _ = '${_}'</if>
+			<if test="_ != null">AND _ = '${_}'</if>
 		</where>
 		ORDER BY id
-	</sql>
-	
-	<!--List of Columns to select from the ML_ENTITY_TABLE table-->
-	<sql id="MonitoringLocationColumns">
-		id
 	</sql>
 </mapper>
