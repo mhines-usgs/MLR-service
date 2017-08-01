@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd" logicalFilePath="liquibaseChangeSet/hydrologic_unit.xml">
-    <changeSet author="mhines" id="add_hydrologic_unit_table">
-        <createTable tableName="hydrologic_unit">
-            <column name="id" type="INT4">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="name" type="text" />
+	<changeSet author="mhines" id="add_hydrologic_unit_table">
+		<createTable tableName="hydrologic_unit">
+			<column name="id" type="INT4">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="name" type="text" />
 			<column name="code" type="text" />
-        </createTable>
-        <addForeignKeyConstraint baseColumnNames="id" baseTableName="hydrologic_unit" constraintName="fk_hydrologic_unit_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="hydrologic_unit_id" referencedTableName="monitoring_location"/>
-    </changeSet>
+		</createTable>
+		<addForeignKeyConstraint baseColumnNames="id" baseTableName="hydrologic_unit" constraintName="fk_hydrologic_unit_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="hydrologic_unit_id" referencedTableName="monitoring_location"/>
+	</changeSet>
 </databaseChangeLog>

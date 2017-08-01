@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd" logicalFilePath="liquibaseChangeSet/altitude_method.xml">
-    <changeSet author="mhines" id="add_altitude_method_table">
-        <createTable tableName="altitude_method">
-            <column name="id" type="INT4">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="name" type="text" />
+	<changeSet author="mhines" id="add_altitude_method_table">
+		<createTable tableName="altitude_method">
+			<column name="id" type="INT4">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="name" type="text" />
 			<column name="code" type="text" />
-        </createTable>
-        <addForeignKeyConstraint baseColumnNames="id" baseTableName="altitude_method" constraintName="fk_altitude_method_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="altitude_method_id" referencedTableName="monitoring_location"/>
-    </changeSet>
+		</createTable>
+		<addForeignKeyConstraint baseColumnNames="id" baseTableName="altitude_method" constraintName="fk_altitude_method_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="altitude_method_id" referencedTableName="monitoring_location"/>
+	</changeSet>
 </databaseChangeLog>

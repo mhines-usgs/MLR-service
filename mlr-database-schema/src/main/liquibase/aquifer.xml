@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd" logicalFilePath="liquibaseChangeSet/aquifer.xml">
-    <changeSet author="mhines" id="add_aquifer_table">
-        <createTable tableName="aquifer">
-            <column name="id" type="INT4">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="name" type="text" />
+	<changeSet author="mhines" id="add_aquifer_table">
+		<createTable tableName="aquifer">
+			<column name="id" type="INT4">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="name" type="text" />
 			<column name="code" type="text" />
 			<column name="nationalaquifer" type="text" />
-        </createTable>
-        <addForeignKeyConstraint baseColumnNames="id" baseTableName="aquifer" constraintName="fk_aquifer_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="aquifer_id" referencedTableName="monitoring_location"/>
+		</createTable>
+		<addForeignKeyConstraint baseColumnNames="id" baseTableName="aquifer" constraintName="fk_aquifer_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="aquifer_id" referencedTableName="monitoring_location"/>
 		<addForeignKeyConstraint baseColumnNames="nationalaquifer" baseTableName="national_aquifer" constraintName="fk_national_aquifer_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="national_aquifer"/>
-    </changeSet>
+	</changeSet>
 </databaseChangeLog>
