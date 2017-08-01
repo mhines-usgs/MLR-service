@@ -17,4 +17,7 @@
 	<include file="use.xml" relativeToChangelogFile="true" />
 	<include file="horizontal_accuracy.xml" relativeToChangelogFile="true" />
 	<include file="horizontal_datum.xml" relativeToChangelogFile="true" />	
+	<include file="horizontal_method.xml" relativeToChangelogFile="true" />
+	<include file="altitude_datum.xml" relativeToChangelogFile="true" />
+	<include file="altitude_method.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
