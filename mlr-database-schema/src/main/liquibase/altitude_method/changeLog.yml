@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgres
+
+  - changeSet:
+      author: kmschoep
+      id: "create.table.altitude_method"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: altitude_method
+      changes:
+        - sqlFile:
+            path: altitude_method.sql
+            relativeToChangelogFile: true
+        - rollback: drop table mlr_data.altitude_method;
