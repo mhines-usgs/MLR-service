@@ -108,25 +108,26 @@
 	</select>
 	
 	<!--Where caluses for dealing with optional parameters and ordering-->
+	<!-- _ Signifies TODO-->
 	<sql id="whereAndOrder">
 		<where>
-			<if test="id != null">AND id = '${id}'</if>
-			<if test="locationNumber != null">AND id = '${id}'</if>
-			<if test="name != null">AND id = '${id}'</if>
-			<if test="monitoringLocationType != null">AND id = '${id}'</if>
-			<if test="_ != null">AND _ = '${_}'</if>
-			<if test="_ != null">AND _ = '${_}'</if>
-			<if test="country != null">AND id = '${id}'</if>
-			<if test="state != null">AND id = '${id}'</if>
-			<if test="county != null">AND id = '${id}'</if>
-			<if test="minorCivilDivisionCode != null">AND id = '${id}'</if>
-			<if test="hydrologicUnit != null">AND id = '${id}'</if>
-			<if test="nationalAquifer != null">AND id = '${id}'</if>
-			<if test="aquifer null">AND id = '${id}'</if>
-			<if test="_ != null">AND _ = '${_}'</if>
-			<if test="_ != null">AND _ = '${_}'</if>
-			<if test="_ != null">AND _ = '${_}'</if>
-			<if test="_ != null">AND _ = '${_}'</if>
+			<if test="id != null">AND id = #{id}</if>
+			<if test="locationNumber != null">AND id = #{id}</if>
+			<if test="name != null">AND id = #{id}</if>
+			<if test="monitoringLocationType != null">AND id = #{id}</if>
+			<if test="_ != null">AND _ = #{_}</if>
+			<if test="_ != null">AND _ = #{_}</if>
+			<if test="country != null">AND id = #{id}</if>
+			<if test="state != null">AND id = #{id}</if>
+			<if test="county != null">AND id = #{id}</if>
+			<if test="minorCivilDivisionCode != null">AND id = #{id}</if>
+			<if test="hydrologicUnit != null">AND id = #{id}</if>
+			<if test="nationalAquifer != null">AND id = #{id}</if>
+			<if test="aquifer null">AND id = #{id}</if>
+			<if test="_ != null">AND _ = #{_}</if>
+			<if test="_ != null">AND _ = #{_}</if>
+			<if test="_ != null">AND _ = #{_}</if>
+			<if test="_ != null">AND _ = #{_}</if>
 		</where>
 		ORDER BY id
 	</sql>
