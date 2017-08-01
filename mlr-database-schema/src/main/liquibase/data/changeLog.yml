@@ -18,3 +18,19 @@ databaseChangeLog:
             quotchar: '"'
             tableName: agency
         - rollback: select 'no rollback - you must restore previous agency.csv and rerun manually' from dual
+
+  - changeSet:
+      id: load.aquifer
+      author: mhines
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: aquifer
+        - loadData:
+            encoding: UTF-8
+            file: aquifer.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: aquifer
+        - rollback: select 'no rollback - you must restore previous aquifer.csv and rerun manually' from dual
