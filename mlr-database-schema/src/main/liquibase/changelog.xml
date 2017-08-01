@@ -20,4 +20,5 @@
 	<include file="horizontal_method.xml" relativeToChangelogFile="true" />
 	<include file="altitude_datum.xml" relativeToChangelogFile="true" />
 	<include file="altitude_method.xml" relativeToChangelogFile="true" />
+	<include file="monitoring_location_type.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
