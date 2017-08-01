@@ -14,4 +14,5 @@
 	<include file="minor_civil_division.xml" relativeToChangelogFile="true" />
 	<include file="national_aquifer.xml" relativeToChangelogFile="true" />
 	<include file="hydrologic_unit.xml" relativeToChangelogFile="true" />
+	<include file="use.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
