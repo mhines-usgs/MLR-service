@@ -52,6 +52,18 @@ public class MicroserviceUtils {
 	}
 	
 	/**
+	 * Initializes a microservice with a supplied name and set of handlers
+	 * 
+	 * @param serviceName The name to use for the new service
+	 * @param handlers The handlers to connect to the new service
+	 * @throws MqConnectionException
+	 */
+	public static void initTransientService(String serviceName, Set<Class<? extends MicroserviceHandler>> handlers) throws MqConnectionException {
+		MicroserviceMsgserviceFactory.getInstance(serviceName).buildMicroserviceMsgservice(handlers, getMqDataExpiry());
+		log.info("{} microservice initialized", serviceName);
+	}
+	
+	/**
 	 * Gets the MicroserviceMsgservice instance for a given service name
 	 * @param serviceName The name to use for looking up and returning the correct message service
 	 * @return The MicroserviceMsgservice associated with the supplied service name

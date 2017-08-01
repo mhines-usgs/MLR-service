@@ -1,4 +1,4 @@
-package gov.usgs.wma.messaging;
+package gov.usgs.wma.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
