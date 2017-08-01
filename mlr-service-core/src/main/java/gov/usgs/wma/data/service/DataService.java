@@ -24,9 +24,7 @@ public class DataService {
 	}
 		
 	public MonitoringLocation getMonitoringLocationByLocationNumber(Long locationNumber){
-		MonitoringLocation location;
-		location = monitoringLocationDao.getMonitoringLocationByLocationNumber(locationNumber);
-		return location;
+		return monitoringLocationDao.getMonitoringLocationByLocationNumber(locationNumber);
 	}
 
 }
