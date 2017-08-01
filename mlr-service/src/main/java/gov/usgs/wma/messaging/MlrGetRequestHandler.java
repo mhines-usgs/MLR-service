@@ -8,7 +8,6 @@ import gov.usgs.wma.util.MlrGsonFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
