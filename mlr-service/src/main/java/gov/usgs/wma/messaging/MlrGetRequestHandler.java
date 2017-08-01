@@ -3,6 +3,7 @@ package gov.usgs.wma.messaging;
 import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
 import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
 import gov.usgs.cida.microservices.util.MessageUtils;
+import gov.usgs.wma.util.MlrGsonFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,10 +36,7 @@ public class MlrGetRequestHandler implements MicroserviceHandler {
 	@Override
 	public void handle(String requestId, String serviceRequestId, Map<String, Object> params, byte[] body, MicroserviceMsgservice msgService) throws IOException {
 		String locationNumber = MessageUtils.getStringFromHeaders(params, "locationNumber");
-		String clientId = MessageUtils.getStringFromHeaders(params, "clientId");
-
 		log.trace("Get request for location {}", locationNumber);
-		log.trace("Get request for clientId {}", clientId);
 		
 		//TODO call java service
 		Map<String,String> result = new HashMap<>();
@@ -47,8 +45,7 @@ public class MlrGetRequestHandler implements MicroserviceHandler {
 		CompleteSender.sendRetrievalComplete(requestId, serviceRequestId, 
 				MlrGsonFactory.getConfiguredGson().toJson(result).getBytes(),
 				msgService,
-				MessageConfiguration.GET_READY_TOPIC,
-				clientId
+				MessageConfiguration.GET_READY_TOPIC
 				);
 	}
 

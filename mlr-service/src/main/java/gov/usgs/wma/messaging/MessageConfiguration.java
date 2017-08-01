@@ -20,5 +20,5 @@ public class MessageConfiguration {
 	}
 	
 	public static final String GET_REQUEST_TOPIC = MLR_SERVICE_NAME + "-get";
-	public static final String GET_READY_TOPIC = MLR_SERVICE_NAME + "-ready";
+	public static final String GET_READY_TOPIC = GET_REQUEST_TOPIC + "-ready";
 }

@@ -42,7 +42,7 @@ public class MlrWebservicesEntryPoint extends Application {
 		classes.add(GenericExceptionMapper.class);
 		
 		
-		log.trace("AqcuFrontEndWebservicesEntryPoint application started");
+		log.trace("MLR application application started");
 		return classes;
 	}
 }
