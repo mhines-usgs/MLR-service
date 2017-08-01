@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- Not sure if these are needed. Values are from GDAWS_AQ_SYNC-->
+	<!--settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="lazyLoadingEnabled" value="false"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<setting name="defaultExecutorType" value="BATCH"/>
+		<setting name="defaultStatementTimeout" value="1300"/>
+		<setting name="logImpl" value="SLF4J"/>
+		<setting name="autoMappingBehavior" value="PARTIAL"/>
+	</settings-->
+
+	<typeAliases>
+		<typeAlias alias="MonitoringLocation" type="gov.usgs.wma.model.MonitoringLocation"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="org.postgresql.Driver"/>
+				<property name="url" value="jdbc:postgresql://${mlr.ml.dbHost}:${mlr.ml.dbPort}/${mlr.ml.dbName}"/>
+				<property name="username" value="${mlr.ml.dbUser}"/>
+				<property name="password" value="${mlr.ml.dbPwd}"/>
+			</dataSource>
+		</environment>
+	</environments>
+ 	
+	<mappers>
+		<mapper resource="mybatis/MonitoringLocationMapper.xml"/>
+	</mappers>
+    
+</configuration>
