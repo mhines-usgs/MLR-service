@@ -32,6 +32,10 @@
 			<artifactId>logback-classic</artifactId>
 			<groupId>ch.qos.logback</groupId>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>mlr-core</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

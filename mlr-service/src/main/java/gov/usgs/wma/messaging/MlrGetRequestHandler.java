@@ -4,11 +4,11 @@ import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
 import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
 import gov.usgs.cida.microservices.util.MessageUtils;
 import gov.usgs.wma.util.MlrGsonFactory;
+import gov.usgs.wma.data.service.DataService;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -22,7 +22,8 @@ import org.slf4j.LoggerFactory;
  */
 public class MlrGetRequestHandler implements MicroserviceHandler {
 	private static final Logger log = LoggerFactory.getLogger(MlrGetRequestHandler.class);
-
+	
+	private DataService dataService = new DataService(IMonitoringLocationDAO);
 	/**
 	 * Handles the request to the getAvailableSites function in the data service
 	 * 

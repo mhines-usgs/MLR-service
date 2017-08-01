@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 	= {"id", "locationNumber", "name", "agency", "primaryAgency", "number", "monitoringLocationType", "uses", "locationGeometry", "country", "state", "county", "minorCivilDivisionCode", "hydrologicUnit", "nationalAquifer", "aquifer"
 	})
 
-@XmlRootElement(name = "NewMonitoringLocation")
+@XmlRootElement(name = "MonitoringLocation")
 public class MonitoringLocation {
 
 	@XmlElement(name = "id")
@@ -30,7 +30,7 @@ public class MonitoringLocation {
 	private List<Agency> agency = new ArrayList<Agency>();
 
 	@XmlElement(name = "primaryAgency")
-	private List<Agency> primaryAgency = new ArrayList<Agency>();
+	private Agency primaryAgency = new Agency();
 
 	@XmlElement(name = "number")
 	private Long number = null;
@@ -128,11 +128,11 @@ public class MonitoringLocation {
 	 * @return primaryAgency
 	 *
 	 */
-	public List<Agency> getPrimaryAgency() {
+	public Agency getPrimaryAgency() {
 		return primaryAgency;
 	}
 
-	public void setPrimaryAgency(List<Agency> primaryAgency) {
+	public void setPrimaryAgency(Agency primaryAgency) {
 		this.primaryAgency = primaryAgency;
 	}
 

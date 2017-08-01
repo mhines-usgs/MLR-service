@@ -14,7 +14,7 @@ import gov.usgs.wma.webservice.error.GenericExceptionMapper;
 
 
 /**
- * Primary entry point to our webservices. (Stanadard Jersey
+ * Primary entry point to our webservices. (Standard Jersey
  * JAX-RS application).
  *
  * Wire up all configuration classes. Includes webservice, format, and error
