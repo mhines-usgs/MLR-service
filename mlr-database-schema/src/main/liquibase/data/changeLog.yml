@@ -1,20 +1,20 @@
 databaseChangeLog:
   - preConditions:
-	- dbms:
-		type: postgresql
+    - dbms:
+        type: postgresql
 
   - changeSet:
-	  id: load.agency
-	  author: mhines
-	  runOnChange: true
-	  changes:
-		- delete:
-			tableName: agency
-		- loadData:
-			encoding: UTF-8
-			file: agency.csv
-			relativeToChangelogFile: true
-			separator: ','
-			quotchar: '"'
-			tableName: agency
-		- rollback: select 'no rollback - you must restore previous agency.csv and rerun manually' from dual
+      id: load.agency
+      author: mhines
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: agency
+        - loadData:
+            encoding: UTF-8
+            file: agency.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: agency
+        - rollback: select 'no rollback - you must restore previous agency.csv and rerun manually' from dual
