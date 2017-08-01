@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgres
+
+  - changeSet:
+      author: kmschoep
+      id: "create.table.use"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: use
+      changes:
+        - sqlFile:
+            path: use.sql
+            relativeToChangelogFile: true
+        - rollback: drop table mlr_data.use;
