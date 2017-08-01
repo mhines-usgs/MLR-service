@@ -27,8 +27,11 @@ public class MsgserviceListener implements ServletContextListener {
 		Set<Class<? extends MicroserviceHandler>> handlers = new HashSet<>();
 		
 		handlers.add(MlrGetRequestHandler.class);
+		handlers.add(MlrCreateRequestHandler.class);
+		handlers.add(MlrUpdateRequestHandler.class);
+		handlers.add(MlrListRequestHandler.class);
 		
-		log.info("MLR service initiatalizing with service tag {}", MessageConfiguration.DATA_RETRIEVAL_SERVICE_TAG);
+		log.info("MLR service initiatalizing with service tag {}", MessageConfiguration.MLR_SERVICE_TAG);
 		
 		try {
 			MicroserviceUtils.initService(MessageConfiguration.MLR_SERVICE_NAME, handlers);
