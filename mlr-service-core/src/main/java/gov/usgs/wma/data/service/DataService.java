@@ -8,6 +8,7 @@ package gov.usgs.wma.data.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import gov.usgs.wma.model.MonitoringLocation;
+import gov.usgs.wma.dao.IMonitoringLocationDAO;
 
 /**
  *
@@ -16,15 +17,15 @@ import gov.usgs.wma.model.MonitoringLocation;
 public class DataService {
 	
 	private static final Logger log = LoggerFactory.getLogger(DataService.class);
-	private IMonitoringLocationDao monitoringLocationDao;
+	private IMonitoringLocationDAO monitoringLocationDao;
 	
 	public DataService(IMonitoringLocationDAO monitoringLocationDao) {
 		this.monitoringLocationDao = monitoringLocationDao;
 	}
-	
-	public MonitoringLocation getMonitoringLocation(Long id){
+		
+	public MonitoringLocation getMonitoringLocationByLocationNumber(Long locationNumber){
 		MonitoringLocation location;
-		location = monitoringLocationDao.getMonitoringLocationById(id);
+		location = monitoringLocationDao.getMonitoringLocationByLocationNumber(locationNumber);
 		return location;
 	}
 
