@@ -9,4 +9,6 @@
     <include file="agency.xml" relativeToChangelogFile="true"/>
 	<include file="aquifer.xml" relativeToChangelogFile="true" />
 	<include file="country.xml" relativeToChangelogFile="true" />
+	<include file="state.xml" relativeToChangelogFile="true" />
+	<include file="county.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
