@@ -1,19 +1,19 @@
 databaseChangeLog:
   - preConditions:
     - dbms:
-        type: postgres
+        type: postgresql
 
   - changeSet:
       author: mhines
-      id: "create.table.country"
+      id: "create.table.state"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
           - tableExists:
-              tableName: country
+              tableName: state
       changes:
         - sqlFile:
-            path: country.sql
+            path: state.sql
             relativeToChangelogFile: true
-        - rollback: drop table mlr_data.country;
+        - rollback: drop table mlr_data.state;

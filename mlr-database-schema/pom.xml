@@ -35,7 +35,7 @@
 						<version>3.0.7</version>
 						<configuration>
 							<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-							<changeLogFile>src/main/resources/changelog.xml</changeLogFile>
+							<changeLogFile>src/main/liquibase/changelog.xml</changeLogFile>
 							<driver>org.postgresql.Driver</driver>
 							<url>${db.url}</url>
 							<username>${db.username}</username>
@@ -113,7 +113,7 @@
 									<clearCheckSums>true</clearCheckSums>
                                     
 									<contexts>test</contexts>
-						test_data.xml		</configuration>
+								</configuration>
 								<goals>
 									<goal>rollback</goal>
 								</goals>
