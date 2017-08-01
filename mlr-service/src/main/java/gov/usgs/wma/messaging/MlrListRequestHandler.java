@@ -1,18 +1,18 @@
 package gov.usgs.wma.messaging;
 
-import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
-import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
-import gov.usgs.cida.microservices.util.MessageUtils;
-import gov.usgs.wma.util.MlrGsonFactory;
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
+import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
+import gov.usgs.cida.microservices.util.MessageUtils;
+import gov.usgs.wma.util.MlrGsonFactory;
 
 /**
  * Handles to mlr service with the specified 
@@ -20,8 +20,8 @@ import org.slf4j.LoggerFactory;
  * 
  * @author thongsav 
  */
-public class MlrGetRequestHandler implements MicroserviceHandler {
-	private static final Logger log = LoggerFactory.getLogger(MlrGetRequestHandler.class);
+public class MlrListRequestHandler implements MicroserviceHandler {
+	private static final Logger log = LoggerFactory.getLogger(MlrListRequestHandler.class);
 
 	/**
 	 * Handles the request to the getAvailableSites function in the data service
@@ -35,17 +35,19 @@ public class MlrGetRequestHandler implements MicroserviceHandler {
 	 */
 	@Override
 	public void handle(String requestId, String serviceRequestId, Map<String, Object> params, byte[] body, MicroserviceMsgservice msgService) throws IOException {
-		String locationNumber = MessageUtils.getStringFromHeaders(params, "locationNumber");
-		log.trace("Get request for location {}", locationNumber);
+		String query = MessageUtils.getStringFromHeaders(params, "query");
+		log.trace("List request for query {}", query);
 		
 		//TODO call java service
 		Map<String,String> result = new HashMap<>();
 		result.put("mqResult", "MLR LOCATION OBJECT HERE");
+		ArrayList<Map<String, String>> resultList = new ArrayList<>();
+		resultList.add(result);
 		
 		CompleteSender.sendRetrievalComplete(requestId, serviceRequestId, 
-				MlrGsonFactory.getConfiguredGson().toJson(result).getBytes(),
+				MlrGsonFactory.getConfiguredGson().toJson(resultList).getBytes(),
 				msgService,
-				MessageConfiguration.GET_READY_TOPIC
+				MessageConfiguration.LIST_READY_TOPIC
 				);
 	}
 
@@ -61,7 +63,7 @@ public class MlrGetRequestHandler implements MicroserviceHandler {
 		
 		Map<String, Object> requestBindingArgs = new HashMap<>();
 		requestBindingArgs.put("x-match", "all");
-		requestBindingArgs.put("eventType", MessageConfiguration.GET_REQUEST_TOPIC);
+		requestBindingArgs.put("eventType", MessageConfiguration.LIST_REQUEST_TOPIC);
 		requestBindingArgs.put("serviceTag", MessageConfiguration.MLR_SERVICE_TAG);
 		requestBindingArgs.put("serviceName", serviceName);
 		result.add(requestBindingArgs);
