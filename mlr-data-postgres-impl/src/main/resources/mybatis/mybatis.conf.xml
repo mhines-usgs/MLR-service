@@ -15,7 +15,7 @@
 	</settings-->
 
 	<typeAliases>
-		<typeAlias alias="MonitoringLocation" type="gov.usgs.wma.mlr.ml.models.MonitoringLocation"/>
+		<typeAlias alias="MonitoringLocation" type="gov.usgs.wma.model.MonitoringLocation"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -23,7 +23,7 @@
 			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
 				<property name="driver" value="org.postgresql.Driver"/>
-				<property name="url" value="jdbc:postgresql://${ml.mlr.dbHost}:${ml.mlr.dbPort}/${ml.mlr.dbName}"/>
+				<property name="url" value="jdbc:postgresql://${mlr.ml.dbHost}:${mlr.ml.dbPort}/${mlr.ml.dbName}"/>
 				<property name="username" value="${mlr.ml.dbUser}"/>
 				<property name="password" value="${mlr.ml.dbPwd}"/>
 			</dataSource>
@@ -31,7 +31,7 @@
 	</environments>
  	
 	<mappers>
-		<mapper resource="mybatis/postgresql/MonitoringLocationMapper.xml"/>
+		<mapper resource="mybatis/MonitoringLocationMapper.xml"/>
 	</mappers>
     
 </configuration>
