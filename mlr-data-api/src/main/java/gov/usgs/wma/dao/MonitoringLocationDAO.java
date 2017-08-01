@@ -47,7 +47,6 @@ public class MonitoringLocationDAO {
 			}
 		}
 		
-		
 		return returnLocation;
 	}
 	

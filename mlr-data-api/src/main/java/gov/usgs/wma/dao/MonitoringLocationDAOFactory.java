@@ -13,6 +13,7 @@ public class MonitoringLocationDAOFactory {
 	private static final Object syncLock = new Object();
 	
 	private static final String MONITORING_LOCATION_DATA_INTERFACE_PROPERTY = "ml.data.interface";
+	private static final String MYBATIS_CONFIGURATION_BASE_DIRECOTRY = "mybatis/";
 	private static final String DEFAULT_MYBATIS_CONFIGURATION = "postgresql.xml";
 	
 	private SqlSessionFactory sqlSessionFactory;
@@ -44,7 +45,8 @@ public class MonitoringLocationDAOFactory {
 		try {
 			//Dynamically load the MyBatis Configuration based in order to specify the interface we want to use
 			String mybatisProperty = ConfigurationLoaderSingleton.getProperty(MONITORING_LOCATION_DATA_INTERFACE_PROPERTY);
-			String resource =  mybatisProperty != null ? mybatisProperty : DEFAULT_MYBATIS_CONFIGURATION;
+			String resource =  MYBATIS_CONFIGURATION_BASE_DIRECOTRY
+					+ (mybatisProperty != null ? mybatisProperty : DEFAULT_MYBATIS_CONFIGURATION);
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, properties);

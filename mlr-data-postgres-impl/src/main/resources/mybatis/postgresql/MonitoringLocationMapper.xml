@@ -7,6 +7,7 @@
 		<id property="id" column="id"/>
 		<result property="locationNumber" column="location_number"/>
 		<result property="name" column="name"/>
+		<result property="number" column="number"/>
 		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
 		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
 		<association property="primaryAgency" resultMap="AgencyMap"/>
@@ -16,7 +17,7 @@
 		<association property="county" resultMap="GeoCodeBaseMap"/>
 		<association property="minorCivilDivisionCode" resultMap="GeoCodeBaseMap"/>
 		<association property="hydrologicUnit" resultMap="GeoCodeBaseMap"/>
-		<association property="nationalAquifer" resultMap="GeoCodeBaseMap"/>
+		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
 		<association property="aquifer" resultMap="MonitoringLocationAquiferMap"/>
 		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use"/>
 		<result property="" column="create_date"/>
@@ -97,37 +98,24 @@
 		SELECT
 			count(*)
 		FROM monitoring_location
-			<include refid="whereAndOrder"/>
+			<include refid="basicWhereAndOrder"/>
 	</select>
 	
 	<!--Returns a list of retrieved MLEntity records-->
 	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap" fetchSize="250000" >
 		SELECT *
 		FROM monitoring_location
-			<include refid="whereAndOrder"/>
+			<include refid="basicWhereAndOrder"/>
 	</select>
 	
 	<!--Where caluses for dealing with optional parameters and ordering-->
-	<!-- _ Signifies TODO-->
-	<sql id="whereAndOrder">
+	<!--TODO: Add additional query options here-->
+	<sql id="basicWhereAndOrder">
 		<where>
 			<if test="id != null">AND id = #{id}</if>
-			<if test="locationNumber != null">AND id = #{id}</if>
-			<if test="name != null">AND id = #{id}</if>
-			<if test="monitoringLocationType != null">AND id = #{id}</if>
-			<if test="_ != null">AND _ = #{_}</if>
-			<if test="_ != null">AND _ = #{_}</if>
-			<if test="country != null">AND id = #{id}</if>
-			<if test="state != null">AND id = #{id}</if>
-			<if test="county != null">AND id = #{id}</if>
-			<if test="minorCivilDivisionCode != null">AND id = #{id}</if>
-			<if test="hydrologicUnit != null">AND id = #{id}</if>
-			<if test="nationalAquifer != null">AND id = #{id}</if>
-			<if test="aquifer null">AND id = #{id}</if>
-			<if test="_ != null">AND _ = #{_}</if>
-			<if test="_ != null">AND _ = #{_}</if>
-			<if test="_ != null">AND _ = #{_}</if>
-			<if test="_ != null">AND _ = #{_}</if>
+			<if test="locationNumber != null">AND location_number = '#{locationNumber}'</if>
+			<if test="name != null">AND name = '#{name}'</if>
+			<if test="number != null">AND number = #{number}></if>
 		</where>
 		ORDER BY id
 	</sql>
