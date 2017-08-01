@@ -36,10 +36,6 @@ databaseChangeLog:
       relativeToChangelogFile: true
 
   - include:
-      file: "horizontal_datum/changeLog.yml"
-      relativeToChangelogFile: true
-
-  - include:
       file: "horizontal_method/changeLog.yml"
       relativeToChangelogFile: true
 
@@ -65,4 +61,8 @@ databaseChangeLog:
 
   - include:
       file: "state/changeLog.yml"
+      relativeToChangelogFile: true
+
+  - include:
+      file: "use/changeLog.yml"
       relativeToChangelogFile: true

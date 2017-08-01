@@ -1,7 +1,7 @@
 databaseChangeLog:
   - preConditions:
     - dbms:
-        type: postgres
+        type: postgresql
 
   - changeSet:
       author: kmschoep
@@ -28,7 +28,7 @@ databaseChangeLog:
 
   - changeSet:
       author: kmschoep
-      id: "create.role.mlr_data"
+      id: "create.role.mlr_user"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
