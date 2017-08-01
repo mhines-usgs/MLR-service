@@ -15,4 +15,6 @@
 	<include file="national_aquifer.xml" relativeToChangelogFile="true" />
 	<include file="hydrologic_unit.xml" relativeToChangelogFile="true" />
 	<include file="use.xml" relativeToChangelogFile="true" />
+	<include file="horizontal_accuracy.xml" relativeToChangelogFile="true" />
+	<include file="horizontal_datum.xml" relativeToChangelogFile="true" />	
 </databaseChangeLog>

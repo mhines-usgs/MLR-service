@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd" logicalFilePath="liquibaseChangeSet/horizontal_accuracy.xml">
+    <changeSet author="mhines" id="add_horizontal_accuracy_table">
+        <createTable tableName="horizontal_accuracy">
+            <column name="id" type="INT4">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="text" />
+			<column name="code" type="text" />
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="horizontal_accuracy" constraintName="fk_horizontal_accuracy_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="horizontal_accuracy_id" referencedTableName="monitoring_location"/>
+    </changeSet>
+</databaseChangeLog>
