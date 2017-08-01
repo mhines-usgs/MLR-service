@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgres
+
+  - changeSet:
+      author: kmschoep
+      id: "create.table.horizontal_method"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: horizontal_method
+      changes:
+        - sqlFile:
+            path: horizontal_method.sql
+            relativeToChangelogFile: true
+        - rollback: drop table mlr_data.horizontal_method;
