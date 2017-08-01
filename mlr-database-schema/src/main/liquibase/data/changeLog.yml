@@ -98,3 +98,19 @@ databaseChangeLog:
             quotchar: '"'
             tableName: county
         - rollback: select 'no rollback - you must restore previous county.csv and rerun manually' from dual
+
+  - changeSet:
+      id: load.minor_civil_division
+      author: mhines
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: minor_civil_division
+        - loadData:
+            encoding: UTF-8
+            file: minor_civil_division.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: minor_civil_division
+        - rollback: select 'no rollback - you must restore previous minor_civil_division.csv and rerun manually' from dual
