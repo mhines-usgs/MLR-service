@@ -11,4 +11,5 @@
 	<include file="country.xml" relativeToChangelogFile="true" />
 	<include file="state.xml" relativeToChangelogFile="true" />
 	<include file="county.xml" relativeToChangelogFile="true" />
+	<include file="minor_civil_division.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
