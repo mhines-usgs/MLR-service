@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgres
+
+  - changeSet:
+      author: kmschoep
+      id: "create.table.horizontal_accuracy"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: horizontal_accuracy
+      changes:
+        - sqlFile:
+            path: horizontal_accuracy.sql
+            relativeToChangelogFile: true
+        - rollback: drop table mlr_data.horizontal_accuracy;
