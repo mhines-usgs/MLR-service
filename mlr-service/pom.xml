@@ -12,11 +12,15 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>gov.usgs.wma</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>mlr-service-core</artifactId>
 		</dependency>
+		<dependency> 
+			<groupId>${project.groupId}</groupId>
+			<artifactId>mlr-data-api</artifactId>
+		</dependency>
 		<dependency>
-			<groupId>gov.usgs.wma</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>mlr-data-postgres-impl</artifactId>
 		</dependency>
 		<dependency>

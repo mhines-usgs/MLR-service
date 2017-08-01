@@ -22,8 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 public class MlrGetRequestHandler implements MicroserviceHandler {
 	private static final Logger log = LoggerFactory.getLogger(MlrGetRequestHandler.class);
-	
-	private DataService dataService = new DataService(IMonitoringLocationDAO);
+
 	/**
 	 * Handles the request to the getAvailableSites function in the data service
 	 * 
