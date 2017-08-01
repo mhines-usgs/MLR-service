@@ -4,7 +4,6 @@ import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
 import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
 import gov.usgs.cida.microservices.util.MessageUtils;
 import gov.usgs.wma.util.MlrGsonFactory;
-import gov.usgs.wma.data.service.DataService;
 
 import java.io.IOException;
 import java.util.HashMap;

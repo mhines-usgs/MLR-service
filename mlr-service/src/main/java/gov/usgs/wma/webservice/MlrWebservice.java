@@ -36,8 +36,8 @@ public class MlrWebservice {
 	 * retrieves a specific location
 	 * 
 	 * @param req The raw HTTP request received from the UI
-	 * @param locationNumber the ID of the site to retrieve
-	 * @return The rendered HTML page representing the report
+	 * @param locationNumber the location number of the site to retrieve
+	 * @return The location
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

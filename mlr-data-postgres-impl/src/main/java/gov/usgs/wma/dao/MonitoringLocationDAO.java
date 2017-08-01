@@ -20,8 +20,8 @@ public class MonitoringLocationDAO implements IMonitoringLocationDAO {
 	
 	private SqlSessionFactory sessionFactory;
 
-	public MonitoringLocationDAO(MonitoringLocationDAOFactory MLDAOFacotry) {
-		this.sessionFactory = MLDAOFacotry.getSqlSessionFactory();
+	public MonitoringLocationDAO(MonitoringLocationDAOFactory MLDAOFactory) {
+		this.sessionFactory = MLDAOFactory.getSqlSessionFactory();
 	}
 	
 	@Override
