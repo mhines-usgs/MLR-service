@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Creates and configures a message service listener for the data retrieval service
  * 
- * @author dmsibley 
+ * @author thongsav 
  */
 @WebListener
 public class MsgserviceListener implements ServletContextListener {

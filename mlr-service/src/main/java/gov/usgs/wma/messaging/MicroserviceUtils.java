@@ -22,7 +22,7 @@ import gov.usgs.wma.util.ConfigurationLoaderSingleton;
 public class MicroserviceUtils {
 	private static final Logger log = LoggerFactory.getLogger(MicroserviceUtils.class);
 	
-	private static final String DATA_QUEUE_TIME_JNDI_NAME = "aqcu.mailbox.ttl.ms";
+	private static final String DATA_QUEUE_TIME_JNDI_NAME = "mq.mailbox.ttl.ms";
 
 	private static final int EXPIRE_DATA_QUEUE_DEFAULT_TIME_MS = 300000; //5 minutes
 	private static final Integer EXPIRE_DATA_QUEUE;
