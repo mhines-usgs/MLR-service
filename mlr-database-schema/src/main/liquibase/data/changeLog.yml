@@ -146,3 +146,19 @@ databaseChangeLog:
             quotchar: '"'
             tableName: horizontal_datum
         - rollback: select 'no rollback - you must restore previous horizontal_datum.csv and rerun manually' from dual
+
+  - changeSet:
+      id: load.horizontal_method
+      author: mhines
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: horizontal_method
+        - loadData:
+            encoding: UTF-8
+            file: horizontal_method.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: horizontal_method
+        - rollback: select 'no rollback - you must restore previous horizontal_method.csv and rerun manually' from dual
