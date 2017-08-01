@@ -68,6 +68,22 @@ databaseChangeLog:
         - rollback: select 'no rollback - you must restore previous country.csv and rerun manually' from dual
 
   - changeSet:
+      id: load.state
+      author: mhines
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: state
+        - loadData:
+            encoding: UTF-8
+            file: state.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: state
+        - rollback: select 'no rollback - you must restore previous state.csv and rerun manually' from dual
+
+  - changeSet:
       id: load.county
       author: mhines
       runOnChange: true
