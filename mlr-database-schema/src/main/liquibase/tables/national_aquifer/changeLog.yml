@@ -1,19 +1,19 @@
 databaseChangeLog:
   - preConditions:
     - dbms:
-        type: postgres
+        type: postgresql
 
   - changeSet:
       author: mhines
-      id: "create.table.agency"
+      id: "create.table.national_aquifer"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
           - tableExists:
-              tableName: agency
+              tableName: national_aquifer
       changes:
         - sqlFile:
-            path: agency.sql
+            path: national_aquifer.sql
             relativeToChangelogFile: true
-        - rollback: drop table mlr_data.agency;
+        - rollback: drop table mlr_data.national_aquifer;
