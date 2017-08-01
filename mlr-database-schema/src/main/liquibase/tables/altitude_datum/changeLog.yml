@@ -1,19 +1,19 @@
 databaseChangeLog:
   - preConditions:
     - dbms:
-        type: postgres
+        type: postgresql
 
   - changeSet:
       author: kmschoep
-      id: "create.table.horizontal_method"
+      id: "create.table.altitude_datum"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
           - tableExists:
-              tableName: horizontal_method
+              tableName: altitude_datum
       changes:
         - sqlFile:
-            path: horizontal_method.sql
+            path: altitude_datum.sql
             relativeToChangelogFile: true
-        - rollback: drop table mlr_data.horizontal_method;
+        - rollback: drop table mlr_data.altitude_datum;

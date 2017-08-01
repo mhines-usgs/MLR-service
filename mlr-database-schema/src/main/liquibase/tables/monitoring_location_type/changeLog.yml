@@ -1,19 +1,19 @@
 databaseChangeLog:
   - preConditions:
     - dbms:
-        type: postgres
+        type: postgresql
 
   - changeSet:
       author: kmschoep
-      id: "create.table.horizontal_accuracy"
+      id: "create.table.monitoring_location_type"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
           - tableExists:
-              tableName: horizontal_accuracy
+              tableName: monitoring_location_type
       changes:
         - sqlFile:
-            path: horizontal_accuracy.sql
+            path: monitoring_location_type.sql
             relativeToChangelogFile: true
-        - rollback: drop table mlr_data.horizontal_accuracy;
+        - rollback: drop table mlr_data.monitoring_location_type;
