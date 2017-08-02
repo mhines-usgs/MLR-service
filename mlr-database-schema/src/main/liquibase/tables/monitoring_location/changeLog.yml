@@ -17,3 +17,16 @@ databaseChangeLog:
             path: monitoring_location.sql
             relativeToChangelogFile: true
         - rollback: drop table mlr_data.monitoring_location;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.constraint.unique.location_number"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: monitoring_location
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint location_number_uk unique (location_number)
+        - rollback: alter table mlr_data.monitoring_location drop constraint location_number_uk
