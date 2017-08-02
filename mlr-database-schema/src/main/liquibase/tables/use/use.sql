@@ -1,8 +1,8 @@
 create table mlr_data.use
 (use_id		integer not null
-,rank							text
 ,code							text
 ,name							text
+,use_type						text constraint use_type_ck check (use_type in ('water','site'))
 ,constraint use_pk
   primary key (use_id)
 );
