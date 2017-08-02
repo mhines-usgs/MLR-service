@@ -240,6 +240,36 @@
 				<artifactId>javax.ws.rs-api</artifactId>
 				<version>${javax.ws.rs-api.version}</version>
 			</dependency>
+		    <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-server</artifactId>
+		        <version>9.2.3.v20140905</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-servlet</artifactId>
+		        <version>9.2.3.v20140905</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.glassfish.jersey.core</groupId>
+		        <artifactId>jersey-server</artifactId>
+		        <version>${jersey.version}</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.glassfish.jersey.containers</groupId>
+		        <artifactId>jersey-container-servlet-core</artifactId>
+		        <version>${jersey.version}</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.glassfish.jersey.containers</groupId>
+		        <artifactId>jersey-container-jetty-http</artifactId>
+		        <version>${jersey.version}</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.glassfish.jersey.media</groupId>
+		        <artifactId>jersey-media-moxy</artifactId>
+		        <version>${jersey.version}</version>
+		    </dependency>
 			<dependency>
 				<groupId>org.glassfish.jersey.containers</groupId>
 				<artifactId>jersey-container-servlet</artifactId>
