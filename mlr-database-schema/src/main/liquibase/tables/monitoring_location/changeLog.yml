@@ -30,3 +30,26 @@ databaseChangeLog:
       changes:
         - sql: alter table mlr_data.monitoring_location add constraint location_number_uk unique (location_number)
         - rollback: alter table mlr_data.monitoring_location drop constraint location_number_uk
+
+  - changeSet:
+      author: kmschoep
+      id: "alter.column.monitoring_location_id.default.sequence"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: monitoring_location
+      changes:
+        - sql: alter table mlr_data.monitoring_location alter column monitoring_location_id set default nextval('mlr_data.monitoring_location_seq');
+        - rollback: alter table mlr_data.monitoring_location alter column monitoring_location_id set default null;
+
+  - changeSet:
+      author: kmschoep
+      id: "alter.sequence.monitoring_location_seq.owned_by"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter sequence mlr_data.monitoring_location_seq owned by mlr_data.monitoring_location.monitoring_location_id;
+        - rollback: alter sequence mlr_data.monitoring_location_seq owned by mlr;

@@ -1,6 +1,9 @@
 package gov.usgs.wma.util;
 
 import gov.usgs.cida.config.DynamicReadOnlyProperties;
+
+import java.util.Properties;
+
 import javax.naming.NamingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +38,9 @@ public class ConfigurationLoaderSingleton {
 	 */
 	public static String getProperty(String prop) {
 		return getInstance().getProperty(prop);
+	}
+	
+	public static Properties getProps() {
+		return props;
 	}
 }

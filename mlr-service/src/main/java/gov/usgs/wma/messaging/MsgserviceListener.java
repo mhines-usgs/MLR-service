@@ -1,7 +1,6 @@
 package gov.usgs.wma.messaging;
 
 import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
-import gov.usgs.cida.microservices.api.messaging.exception.MqConnectionException;
 
 import java.util.HashSet;
 import java.util.Set;
