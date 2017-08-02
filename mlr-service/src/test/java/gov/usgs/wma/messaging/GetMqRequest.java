@@ -15,6 +15,10 @@ import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
 
 public class GetMqRequest {
 
+	/**
+	 * NOT ACTUAL UNIT TEST, used as helper, keep this Ignored and only use if you want to send MQ requests during dev.
+	 */
+	@Ignore
 	@Test
 	public void sendGetMqRequest() throws MqConnectionException, InterruptedException {
 		String requestId = UUID.randomUUID().toString();
