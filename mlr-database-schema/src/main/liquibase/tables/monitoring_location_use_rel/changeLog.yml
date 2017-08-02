@@ -11,7 +11,7 @@ databaseChangeLog:
         - onError: HALT
         - not:
           - tableExists:
-              tableName: use
+              tableName: monitoring_location_use_rel
       changes:
         - sqlFile:
             path: monitoring_location_use_rel.sql
