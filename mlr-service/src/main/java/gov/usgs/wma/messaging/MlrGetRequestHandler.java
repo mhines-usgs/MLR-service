@@ -1,10 +1,5 @@
 package gov.usgs.wma.messaging;
 
-import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
-import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
-import gov.usgs.cida.microservices.util.MessageUtils;
-import gov.usgs.wma.util.MlrGsonFactory;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,6 +7,14 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
+import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
+import gov.usgs.cida.microservices.util.MessageUtils;
+import gov.usgs.wma.data.service.DataService;
+import gov.usgs.wma.model.MonitoringLocation;
+import gov.usgs.wma.util.MlrGsonFactory;
+import gov.usgs.wma.util.MlrInstanceSingleton;
 
 /**
  * Handles to mlr service with the specified 
@@ -22,6 +25,11 @@ import org.slf4j.LoggerFactory;
 public class MlrGetRequestHandler implements MicroserviceHandler {
 	private static final Logger log = LoggerFactory.getLogger(MlrGetRequestHandler.class);
 
+	/**
+	 * May want to use dependency injection later
+	 */
+	DataService service = MlrInstanceSingleton.getDataService();
+	
 	/**
 	 * Handles the request to the getAvailableSites function in the data service
 	 * 
@@ -37,12 +45,10 @@ public class MlrGetRequestHandler implements MicroserviceHandler {
 		String locationNumber = MessageUtils.getStringFromHeaders(params, "locationNumber");
 		log.trace("Get request for location {}", locationNumber);
 		
-		//TODO call java service
-		Map<String,String> result = new HashMap<>();
-		result.put("mqResult", "MLR LOCATION OBJECT HERE");
+		MonitoringLocation fetchedLocation = service.getMonitoringLocationByLocationNumber(locationNumber);
 		
 		CompleteSender.sendRetrievalComplete(requestId, serviceRequestId, 
-				MlrGsonFactory.getConfiguredGson().toJson(result).getBytes(),
+				MlrGsonFactory.getConfiguredGson().toJson(fetchedLocation).getBytes(),
 				msgService,
 				MessageConfiguration.GET_READY_TOPIC
 				);
