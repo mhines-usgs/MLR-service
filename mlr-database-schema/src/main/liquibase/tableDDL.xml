@@ -31,7 +31,7 @@
 				<constraints nullable="false" />
 			</column>
 			<column 
-				name="type_id" 
+				name="monitoring_location_type_id" 
 				type="INT4"
 				remarks="the type of monitoring location"
 			/>
