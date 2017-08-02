@@ -7,9 +7,11 @@
 		<id property="id" column="id"/>
 		<result property="locationNumber" column="location_number"/>
 		<result property="name" column="name"/>
-		<result property="number" column="number"/>
+		<result property="number" column="number"/><result property="" column="create_date"/>
+		<result property="" column="create_user"/>
+		<result property="" column="last_update"/>
+		<result property="" column="last_update_user"/>
 		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
-		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
 		<association property="primaryAgency" resultMap="AgencyMap"/>
 		<association property="locationGeometry" resultMap="FeatureMap"/>
 		<association property="country" resultMap="GeoCodeBaseMap"/>
@@ -19,11 +21,8 @@
 		<association property="hydrologicUnit" resultMap="GeoCodeBaseMap"/>
 		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
 		<association property="aquifer" resultMap="MonitoringLocationAquiferMap"/>
+		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
 		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use"/>
-		<result property="" column="create_date"/>
-		<result property="" column="create_user"/>
-		<result property="" column="last_update"/>
-		<result property="" column="last_update_user"/>
 	</resultMap>
 	
 	<!-- Map Agnecies-->
@@ -32,15 +31,7 @@
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
 	</resultMap>
-	
-	<!-- Map Features-->
-	<resultMap id="FeatureMap" type="Feature">
-		<id column="id"/>
-		<result property="type" column="type"/>
-		<association property="geometry" resultMap="PointMap"/>
-		<result property="pointProperties" column="point_properties"/>
-	</resultMap>
-	
+		
 	<!-- Map GeoCodeBases-->
 	<resultMap id="GeoCodeBaseMap" type="GeoCodeBase">
 		<id property="id" column="id"/>
@@ -56,6 +47,14 @@
 	<!-- Map Points-->
 	<resultMap id="PointMap" type="Point" extends="GeometryMap">
 		<collection property="coordinates" column="coordinates" javaType="Point3D" ofType="BigDecimal"/>
+	</resultMap>
+	
+	<!-- Map Features-->
+	<resultMap id="FeatureMap" type="Feature">
+		<id property="id" column="id"/>
+		<result property="type" column="type"/>
+		<association property="pointProperties" resultMap="PointPropertiesMap"/>
+		<association property="geometry" resultMap="PointMap"/>
 	</resultMap>
 		
 	<!-- Map Point Properties-->

@@ -15,7 +15,18 @@
 	</settings-->
 
 	<typeAliases>
+		<typeAlias alias="Agency" type="gov.usgs.wma.model.Agency"/>
+		<typeAlias alias="ErrorModel" type="gov.usgs.wma.model.ErrorModel"/>
+		<typeAlias alias="Feature" type="gov.usgs.wma.model.Feature"/>
+		<typeAlias alias="GeoCodeBase" type="gov.usgs.wma.model.GeoCodeBase"/>
+		<typeAlias alias="Geometry" type="gov.usgs.wma.model.Geometry"/>
 		<typeAlias alias="MonitoringLocation" type="gov.usgs.wma.model.MonitoringLocation"/>
+		<typeAlias alias="MonitoringLocationAquifer" type="gov.usgs.wma.model.MonitoringLocationAquifer"/>
+		<typeAlias alias="MonitoringLocationType" type="gov.usgs.wma.model.MonitoringLocationType"/>
+		<typeAlias alias="Point" type="gov.usgs.wma.model.Point"/>
+		<typeAlias alias="PointProperties" type="gov.usgs.wma.model.PointProperties"/>
+		<typeAlias alias="Point3D" type="gov.usgs.wma.model.Point3d"/>
+		<typeAlias alias="Use" type="gov.usgs.wma.model.Use"/>
 	</typeAliases>
 	
 	<environments default="development">
