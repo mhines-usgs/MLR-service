@@ -32,7 +32,7 @@ public interface IMonitoringLocationDAO {
 		return getSingleMonitoringLocationByParam("id", id);
 	};
 	
-	public default MonitoringLocation getMonitoringLocationByLocationNumber(Long locationNumber) {
+	public default MonitoringLocation getMonitoringLocationByLocationNumber(String locationNumber) {
 		return getSingleMonitoringLocationByParam("locationNumber", locationNumber);
 	};
 	

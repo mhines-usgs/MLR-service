@@ -15,6 +15,9 @@ import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
 
 public class GetMqRequest {
 
+	/**
+	 * NOT ACTUAL UNIT TEST, used as helper, keep this Ignored and only use if you want to send MQ requests during dev.
+	 */
 	@Ignore
 	@Test
 	public void sendGetMqRequest() throws MqConnectionException, InterruptedException {
@@ -31,7 +34,7 @@ public class GetMqRequest {
 		Map<String, Object> headers = new HashMap<>();
 		headers.put("serviceName", MessageConfiguration.MLR_SERVICE_NAME);
 		headers.put("eventType", MessageConfiguration.GET_REQUEST_TOPIC);
-		headers.put("serviceTag", MessageConfiguration.DATA_RETRIEVAL_SERVICE_TAG);
+		headers.put("serviceTag", MessageConfiguration.MLR_SERVICE_TAG);
 		headers.put("locationNumber", "012345");
 
 		service.sendMessage(requestId, serviceRequestId, headers, new byte[0]);

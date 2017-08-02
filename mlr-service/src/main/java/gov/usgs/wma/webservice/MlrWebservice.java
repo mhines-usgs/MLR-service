@@ -1,5 +1,8 @@
 package gov.usgs.wma.webservice;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -15,6 +18,8 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import gov.usgs.wma.model.MonitoringLocation;
+
 
 /**
  * This class is used as the front end to the reporting system and will be imported into
@@ -25,6 +30,12 @@ import org.slf4j.LoggerFactory;
 @Path("/")
 public class MlrWebservice {
 	private static final Logger log = LoggerFactory.getLogger(MlrWebservice.class);
+	
+	/**
+	 * May want to use dependency injection later
+	 */
+	//comment back in when DAO is hooked up
+//	DataService service = MlrInstanceSingleton.getDataService();
 	
 	/**
 	 * Default Constructor
@@ -42,9 +53,14 @@ public class MlrWebservice {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocation/{locationNumber}")
-	public String getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber) {
-		//TODO Call java core service
-		return "{ \"locationResponse\": \"CHANGE THIS TO MONITORING LOCATION\" }";
+	public MonitoringLocation getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber) {
+		//comment back in when DAO is hooked up
+//		MonitoringLocation fetchedLocation = service.getMonitoringLocationByLocationNumber(locationNumber);
+//		return fetchedLocation;
+		MonitoringLocation dummy = new MonitoringLocation();
+		dummy.setLocationNumber(locationNumber);
+		dummy.setName("DUMMY");
+		return dummy;
 	}
 	
 	/**
@@ -56,9 +72,9 @@ public class MlrWebservice {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocations")
-	public String createMonitoringLocation(final String newLocationJson) {
-		//TODO Call java core service
-		return "{ \"createResponse\": \"CHANGE THIS TO MONITORING LOCATION\" }";
+	public MonitoringLocation createMonitoringLocation(final MonitoringLocation newLocationJson) {
+		//TODO Call java core service when available
+		return newLocationJson;
 	}
 	
 	/**
@@ -70,9 +86,10 @@ public class MlrWebservice {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocation/{locationNumber}")
-	public String updateMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber, final String newLocationJson) {
-		//TODO Call java core service
-		return "{ \"updateResponse\": \"CHANGE THIS TO MONITORING LOCATION\" }";
+	public MonitoringLocation updateMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber, final MonitoringLocation newLocationJson) {
+		//TODO Call java core service when available
+		newLocationJson.setLocationNumber(locationNumber);
+		return newLocationJson;
 	}
 	
 	/**
@@ -84,8 +101,15 @@ public class MlrWebservice {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocations")
-	public String getLocations(@QueryParam("query") final String query) {
-		//TODO Call java core service
-		return "[{ \"listResponse\": \"CHANGE THIS TO MONITORING LOCATION\" }]";
+	public List<MonitoringLocation> getLocations(@QueryParam("query") final String query) {
+		//TODO Call java core service when available
+		MonitoringLocation dummy = new MonitoringLocation();
+		dummy.setLocationNumber("1");
+		dummy.setName("DUMMY1");
+		
+		MonitoringLocation dummy2 = new MonitoringLocation();
+		dummy2.setLocationNumber("2");
+		dummy2.setName("DUMMY2");
+		return Arrays.asList(new MonitoringLocation[] { dummy, dummy2 });
 	}
 }
