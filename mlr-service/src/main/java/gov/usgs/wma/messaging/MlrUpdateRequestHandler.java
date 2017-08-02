@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import gov.usgs.cida.microservices.api.messaging.MicroserviceHandler;
 import gov.usgs.cida.microservices.messaging.MicroserviceMsgservice;
+import gov.usgs.wma.data.service.DataService;
 import gov.usgs.wma.util.MlrGsonFactory;
+import gov.usgs.wma.util.MlrInstanceSingleton;
 
 /**
  * Handles to mlr service with the specified 
@@ -21,6 +23,11 @@ import gov.usgs.wma.util.MlrGsonFactory;
 public class MlrUpdateRequestHandler implements MicroserviceHandler {
 	private static final Logger log = LoggerFactory.getLogger(MlrUpdateRequestHandler.class);
 
+	/**
+	 * May want to use dependency injection later
+	 */
+	DataService service = MlrInstanceSingleton.getDataService();
+	
 	/**
 	 * Handles the request to the getAvailableSites function in the data service
 	 * 

@@ -23,7 +23,7 @@ public class DataService {
 		this.monitoringLocationDao = monitoringLocationDao;
 	}
 		
-	public MonitoringLocation getMonitoringLocationByLocationNumber(Long locationNumber){
+	public MonitoringLocation getMonitoringLocationByLocationNumber(String locationNumber){
 		return monitoringLocationDao.getMonitoringLocationByLocationNumber(locationNumber);
 	}
 
