@@ -7,14 +7,18 @@
 		<id property="id" column="monitoring_location_id"/>
 		<result property="locationNumber" column="location_number"/>
 		<result property="name" column="name"/>
+		
+		<!--Currently no fields in MonitoringLocation for storing these values-->
 		<result property="" column="create_date"/>
 		<result property="" column="create_user"/>
 		<result property="" column="last_update"/>
 		<result property="" column="last_update_user"/>
+		
+		<!--Currently no field in MonitoringLocation for storing GeoJSON Feature-->
+		<result property="" column="feature"/>
+		
 		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
 		<association property="primaryAgency" resultMap="AgencyMap"/>
-		<!--Need to work out handling of JSON type-->
-		<!--association property="locationGeometry" resultMap="FeatureMap"/-->
 		<association property="country" resultMap="CountryMap"/>
 		<association property="state" resultMap="StateMap"/>
 		<association property="county" resultMap="CountyMap"/>
@@ -64,34 +68,6 @@
 		<result property="code" column="code"/>
 	</resultMap>
 	
-	<!-- Map Geometries-->
-	<resultMap id="GeometryMap" type="Geometry">
-		<result property="type" column="type"/>
-	</resultMap>
-	
-	<!-- Map Points-->
-	<resultMap id="PointMap" type="Point" extends="GeometryMap">
-		<collection property="coordinates" column="coordinates" javaType="Point3D" ofType="BigDecimal"/>
-	</resultMap>
-	
-	<!-- Map Features-->
-	<resultMap id="FeatureMap" type="Feature">
-		<id property="id" column="id"/>
-		<result property="type" column="type"/>
-		<association property="pointProperties" resultMap="PointPropertiesMap"/>
-		<association property="geometry" resultMap="PointMap"/>
-	</resultMap>
-		
-	<!-- Map Point Properties-->
-	<resultMap id="PointPropertiesMap" type="PointProperties">
-		<result property="horizontalAccuracyCode" column="horizontal_accuracy_code"/>
-		<result property="horizontalDatum" column="horizontal_datum"/>
-		<result property="horizontalMethodCode" column="horizontal_method_code"/>
-		<result property="altitudeAccuracy" column="altitude_accuracy"/>
-		<result property="altitudeDatum" column="altitude_datum"/>
-		<result property="altitudeMethodCode" column="altitude_method_code"/>
-	</resultMap>
-	
 	<!-- Map Monitoring Location Aquifers-->
 	<resultMap id="AquiferMap" type="MonitoringLocationAquifer">
 		<id property="id" column="aquifer_id"/>
@@ -115,13 +91,19 @@
 	<!-- Map Uses-->
 	<resultMap id="UseMap" type="Use">
 		<id property="id" column="use_id"/>
-		<!--use_type from DB not in Model?-->
-		<result property="rank" column="rank"/>
+		
+		<!--Currently no field in Use for storing use_type-->
+		<result property="" column="use_type"/>
 		<result property="code" column="code"/>
 		<result property="name" column="name"/>
 	</resultMap>
 	
-	
+	<!-- Needs to be implemented as a Model class-->
+	<!--
+	<resultMap id="MonitoringLocationUseRelMap" type="MonitoringLocationUseRel">
+		<result property="id" column="monitoring_location_id"/>
+	</resultMap>
+	-->
 	
 	<!--Returns a count of the number of MLEntity instances in the table-->
 	<select id="getCount" parameterType="map" resultType="int">
