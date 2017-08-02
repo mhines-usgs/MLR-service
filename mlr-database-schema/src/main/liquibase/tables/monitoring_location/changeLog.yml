@@ -28,5 +28,5 @@ databaseChangeLog:
           - tableExists:
               tableName: monitoring_location
       changes:
-        - sql: alter table monitoring_location add constraint location_number_uk unique (location_number)
-        - rollback: drop table mlr_data.monitoring_location;
+        - sql: alter table mlr_data.monitoring_location add constraint location_number_uk unique (location_number)
+        - rollback: alter table mlr_data.monitoring_location drop constraint location_number_uk

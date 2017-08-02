@@ -10,8 +10,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint agency_fk foreign key (primary_agency_id) references mlr_data.agency (agency_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint agency_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint agency_fk foreign key (primary_agency_id) references mlr_data.agency (agency_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint agency_fk;
 
   - changeSet:
       author: kmschoep
@@ -20,8 +20,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint aquifer_fk foreign key (aquifer_id) references mlr_data.aquifer (aquifer_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint aquifer_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint aquifer_fk foreign key (aquifer_id) references mlr_data.aquifer (aquifer_id) match simple on update no action on delete no action;
+        - rollback: alter mlr_data.table monitoring_location drop constraint aquifer_fk;
 
   - changeSet:
       author: kmschoep
@@ -30,8 +30,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint country_fk foreign key (country_id) references mlr_data.country (country_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint country_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint country_fk foreign key (country_id) references mlr_data.country (country_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint country_fk;
 
   - changeSet:
       author: kmschoep
@@ -40,8 +40,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint county_fk foreign key (county_id) references mlr_data.county (county_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint county_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint county_fk foreign key (county_id) references mlr_data.county (county_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint county_fk;
 
   - changeSet:
       author: kmschoep
@@ -50,8 +50,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint hydrologic_unit_fk foreign key (hydrologic_unit_id) references mlr_data.hydrologic_unit (hydrologic_unit_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint hydrologic_unit_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint hydrologic_unit_fk foreign key (hydrologic_unit_id) references mlr_data.hydrologic_unit (hydrologic_unit_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint hydrologic_unit_fk;
 
   - changeSet:
       author: kmschoep
@@ -60,8 +60,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint minor_civil_division_fk foreign key (minor_civil_division_id) references mlr_data.minor_civil_division (minor_civil_division_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint minor_civil_division_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint minor_civil_division_fk foreign key (minor_civil_division_id) references mlr_data.minor_civil_division (minor_civil_division_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint minor_civil_division_fk;
 
   - changeSet:
       author: kmschoep
@@ -70,8 +70,8 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint national_aquifer_fk foreign key (national_aquifer_id) references mlr_data.national_aquifer (national_aquifer_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint national_aquifer_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint national_aquifer_fk foreign key (national_aquifer_id) references mlr_data.national_aquifer (national_aquifer_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint national_aquifer_fk;
 
   - changeSet:
       author: kmschoep
@@ -80,5 +80,5 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - onError: HALT
       changes:
-        - sql: alter table monitoring_location add constraint national_aquifer_fk foreign key (national_aquifer_id) references mlr_data.national_aquifer (national_aquifer_id) match simple on update no action on delete no action;
-        - rollback: alter table monitoring_location drop constraint national_aquifer_fk;
+        - sql: alter table mlr_data.monitoring_location add constraint state_fk foreign key (state_id) references mlr_data.state (state_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint state_fk;

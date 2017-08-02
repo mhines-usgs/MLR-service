@@ -1,17 +1,6 @@
 The inital setup for a non-containerized postgres:
 
-1. Create database
-```
--- Database: mlr
-
--- DROP DATABASE mlr;
-
-CREATE DATABASE mlr
-  WITH OWNER = mlr
-       CONNECTION LIMIT = -1;
-```
-
-2. Create application-level admin user:
+1. Create application-level admin user:
 
 ```
 -- Role: mlr
@@ -21,8 +10,17 @@ CREATE DATABASE mlr
 CREATE ROLE mlr LOGIN
   ENCRYPTED PASSWORD <whatever you want>
   NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
-GRANT mlr_data TO mlr;
-GRANT mlr_user TO mlr;
+```
+
+2. Create database
+```
+-- Database: mlr
+
+-- DROP DATABASE mlr;
+
+CREATE DATABASE mlr
+  WITH OWNER = mlr
+       CONNECTION LIMIT = -1;
 ```
 
 cd to src/main/liquibase, then:
