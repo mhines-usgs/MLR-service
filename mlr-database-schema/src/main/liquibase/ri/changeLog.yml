@@ -82,3 +82,13 @@ databaseChangeLog:
       changes:
         - sql: alter table mlr_data.monitoring_location add constraint state_fk foreign key (state_id) references mlr_data.state (state_id) match simple on update no action on delete no action;
         - rollback: alter table mlr_data.monitoring_location drop constraint state_fk;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.monitoring_location.monitoring_location_type_fk"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint monitoring_location_type_fk foreign key (monitoring_location_type_id) references mlr_data.monitoring_location_type (monitoring_location_type_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint monitoring_location_type_fk;
