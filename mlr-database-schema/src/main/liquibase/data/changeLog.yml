@@ -178,3 +178,19 @@ databaseChangeLog:
             quotchar: '"'
             tableName: altitude_datum
         - rollback: select 'no rollback - you must restore previous altitude_datum.csv and rerun manually' from dual
+
+  - changeSet:
+      id: load.hydrologic_unit
+      author: mhines
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: hydrologic_unit
+        - loadData:
+            encoding: UTF-8
+            file: hydrologic_unit.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: hydrologic_unit
+        - rollback: select 'no rollback - you must restore previous hydrologic_unit.csv and rerun manually' from dual
