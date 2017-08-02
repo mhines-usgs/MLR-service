@@ -4,37 +4,62 @@
 <mapper namespace="gov.usgs.wma.mapper.MonitoringLocationMapper">
 	<!--Map Monitoring Locations-->
 	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
-		<id property="id" column="id"/>
+		<id property="id" column="monitoring_location_id"/>
 		<result property="locationNumber" column="location_number"/>
 		<result property="name" column="name"/>
-		<result property="number" column="number"/><result property="" column="create_date"/>
+		<result property="" column="create_date"/>
 		<result property="" column="create_user"/>
 		<result property="" column="last_update"/>
 		<result property="" column="last_update_user"/>
 		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
 		<association property="primaryAgency" resultMap="AgencyMap"/>
-		<association property="locationGeometry" resultMap="FeatureMap"/>
-		<association property="country" resultMap="GeoCodeBaseMap"/>
-		<association property="state" resultMap="GeoCodeBaseMap"/>
-		<association property="county" resultMap="GeoCodeBaseMap"/>
-		<association property="minorCivilDivisionCode" resultMap="GeoCodeBaseMap"/>
-		<association property="hydrologicUnit" resultMap="GeoCodeBaseMap"/>
-		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
-		<association property="aquifer" resultMap="MonitoringLocationAquiferMap"/>
+		<!--Need to work out handling of JSON type-->
+		<!--association property="locationGeometry" resultMap="FeatureMap"/-->
+		<association property="country" resultMap="CountryMap"/>
+		<association property="state" resultMap="StateMap"/>
+		<association property="county" resultMap="CountyMap"/>
+		<association property="minorCivilDivisionCode" resultMap="MinorCivilDivisionCodeMap"/>
+		<association property="hydrologicUnit" resultMap="HydrologicUnitMap"/>
+		<association property="nationalAquifer" resultMap="NationalAquiferMap"/>
+		<association property="aquifer" resultMap="AquiferMap"/>
 		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
 		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use"/>
 	</resultMap>
 	
 	<!-- Map Agnecies-->
 	<resultMap id="AgencyMap" type="Agency">
-		<id property="id" column="id"/>
+		<id property="id" column="agency_id"/>
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
 	</resultMap>
 		
 	<!-- Map GeoCodeBases-->
-	<resultMap id="GeoCodeBaseMap" type="GeoCodeBase">
-		<id property="id" column="id"/>
+	<resultMap id="CountryMap" type="GeoCodeBase">
+		<id property="id" column="country_id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<resultMap id="StateMap" type="GeoCodeBase">
+		<id property="id" column="state_id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<resultMap id="CountyMap" type="GeoCodeBase">
+		<id property="id" column="county_id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<resultMap id="MinorCivilDivisionMap" type="GeoCodeBase">
+		<id property="id" column="minor_civil_division_id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
+	</resultMap>
+	
+	<resultMap id="HydrologicUnitMap" type="GeoCodeBase">
+		<id property="id" column="hydrologic_unit_id"/>
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
 	</resultMap>
@@ -68,23 +93,29 @@
 	</resultMap>
 	
 	<!-- Map Monitoring Location Aquifers-->
-	<resultMap id="MonitoringLocationAquiferMap" type="MonitoringLocationAquifer">
-		<id property="id" column="id"/>
+	<resultMap id="AquiferMap" type="MonitoringLocationAquifer">
+		<id property="id" column="aquifer_id"/>
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
-		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
+	</resultMap>
+	
+	<resultMap id="NationalAquiferMap" type="MonitoringLocationAquifer">
+		<id property="id" column="national_aquifer_id"/>
+		<result property="name" column="name"/>
+		<result property="code" column="code"/>
 	</resultMap>
 	
 	<!-- Map Monitoring Location Types-->
 	<resultMap id="MonitoringLocationTypeMap" type="MonitoringLocationType">
-		<id property="id" column="id"/>
+		<id property="id" column="monitoring_location_type_id"/>
 		<result property="name" column="name"/>
 		<result property="code" column="code"/>
 	</resultMap>
 	
 	<!-- Map Uses-->
 	<resultMap id="UseMap" type="Use">
-		<id property="id" column="id"/>
+		<id property="id" column="use_id"/>
+		<!--use_type from DB not in Model?-->
 		<result property="rank" column="rank"/>
 		<result property="code" column="code"/>
 		<result property="name" column="name"/>
