@@ -17,7 +17,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: agency
-        - rollback: select 'no rollback - you must restore previous agency.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous agency.csv and rerun manually';
 
   - changeSet:
       id: load.aquifer
@@ -33,7 +33,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: aquifer
-        - rollback: select 'no rollback - you must restore previous aquifer.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous aquifer.csv and rerun manually';
 
   - changeSet:
       id: load.national_aquifer
@@ -49,7 +49,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: national_aquifer
-        - rollback: select 'no rollback - you must restore previous national_aquifer.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous national_aquifer.csv and rerun manually';
 
   - changeSet:
       id: load.country
@@ -65,7 +65,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: country
-        - rollback: select 'no rollback - you must restore previous country.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous country.csv and rerun manually';
 
   - changeSet:
       id: load.state
@@ -81,7 +81,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: state
-        - rollback: select 'no rollback - you must restore previous state.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous state.csv and rerun manually';
 
   - changeSet:
       id: load.county
@@ -97,7 +97,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: county
-        - rollback: select 'no rollback - you must restore previous county.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous county.csv and rerun manually';
 
   - changeSet:
       id: load.minor_civil_division
@@ -113,7 +113,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: minor_civil_division
-        - rollback: select 'no rollback - you must restore previous minor_civil_division.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous minor_civil_division.csv and rerun manually';
 
   - changeSet:
       id: load.horizontal_accuracy
@@ -129,7 +129,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: horizontal_accuracy
-        - rollback: select 'no rollback - you must restore previous horizontal_accuracy.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous horizontal_accuracy.csv and rerun manually';
 
   - changeSet:
       id: load.horizontal_datum
@@ -145,7 +145,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: horizontal_datum
-        - rollback: select 'no rollback - you must restore previous horizontal_datum.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous horizontal_datum.csv and rerun manually';
 
   - changeSet:
       id: load.horizontal_method
@@ -161,7 +161,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: horizontal_method
-        - rollback: select 'no rollback - you must restore previous horizontal_method.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous horizontal_method.csv and rerun manually';
 
   - changeSet:
       id: load.altitude_datum
@@ -177,7 +177,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: altitude_datum
-        - rollback: select 'no rollback - you must restore previous altitude_datum.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous altitude_datum.csv and rerun manually';
 
   - changeSet:
       id: load.hydrologic_unit
@@ -193,4 +193,4 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: hydrologic_unit
-        - rollback: select 'no rollback - you must restore previous hydrologic_unit.csv and rerun manually' from dual
+        - rollback: select 'no rollback - you must restore previous hydrologic_unit.csv and rerun manually';

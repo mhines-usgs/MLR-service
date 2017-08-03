@@ -5,15 +5,15 @@ databaseChangeLog:
 
   - changeSet:
       author: kmschoep
-      id: "create.table.monitoring_location_use_rel"
+      id: "create.table.monitoring_location_agency_rel"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
           - tableExists:
-              tableName: monitoring_location_use_rel
+              tableName: monitoring_location_agency_rel
       changes:
         - sqlFile:
-            path: monitoring_location_use_rel.sql
+            path: monitoring_location_agency_rel.sql
             relativeToChangelogFile: true
-        - rollback: drop table mlr_data.monitoring_location_use_rel;
+        - rollback: drop table mlr_data.monitoring_location_agency_rel;

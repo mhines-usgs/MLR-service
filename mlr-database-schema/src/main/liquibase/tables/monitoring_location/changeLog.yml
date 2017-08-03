@@ -5,7 +5,7 @@ databaseChangeLog:
 
   - changeSet:
       author: kmschoep
-      id: "create.table.monitoring_location"
+      id: "create.table.monitoring_location2"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
@@ -53,3 +53,29 @@ databaseChangeLog:
       changes:
         - sql: alter sequence mlr_data.monitoring_location_seq owned by mlr_data.monitoring_location.monitoring_location_id;
         - rollback: alter sequence mlr_data.monitoring_location_seq owned by mlr;
+
+  - changeSet:
+      author: kmschoep
+      id: "alter.column.create_user.notNull"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: monitoring_location
+      changes:
+        - sql: alter table mlr_data.monitoring_location alter column create_user set not null;
+        - rollback: alter table mlr_data.monitoring_location alter column create_user set nullable;
+
+  - changeSet:
+      author: kmschoep
+      id: "alter.column.create_date.notNull"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: monitoring_location
+      changes:
+        - sql: alter table mlr_data.monitoring_location alter column create_date set not null;
+        - rollback: alter table mlr_data.monitoring_location alter column create_date set nullable;
