@@ -21,7 +21,7 @@ databaseChangeLog:
         - onError: HALT
       changes:
         - sql: alter table mlr_data.monitoring_location add constraint aquifer_fk foreign key (aquifer_id) references mlr_data.aquifer (aquifer_id) match simple on update no action on delete no action;
-        - rollback: alter mlr_data.monitoring_location drop constraint aquifer_fk;
+        - rollback: alter table mlr_data.monitoring_location drop constraint aquifer_fk;
 
   - changeSet:
       author: kmschoep

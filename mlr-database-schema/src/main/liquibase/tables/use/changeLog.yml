@@ -24,9 +24,6 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: use
       changes:
         - sql: alter table mlr_data.use alter column use_id set default nextval('mlr_data.use_seq');
         - rollback: alter table mlr_data.use alter column use_id set default null;
@@ -39,4 +36,24 @@ databaseChangeLog:
         - onError: HALT
       changes:
         - sql: alter sequence mlr_data.use_seq owned by mlr_data.use.use_id;
-        - rollback: alter sequence mlr_data.use_seq owned by mlr;
+        - rollback: alter sequence mlr_data.use_seq owned by none;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.use.use_code_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index use_code_idx on mlr_data.use (code);
+        - rollback: drop index mlr_data.use_code_idx;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.use.use_name_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index use_name_idx on mlr_data.use (name);
+        - rollback: drop index mlr_data.use_name_idx;

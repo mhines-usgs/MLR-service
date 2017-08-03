@@ -24,9 +24,6 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: horizontal_accuracy
       changes:
         - sql: alter table mlr_data.horizontal_accuracy alter column horizontal_accuracy_id set default nextval('mlr_data.horizontal_accuracy_seq');
         - rollback: alter table mlr_data.horizontal_accuracy alter column horizontal_accuracy_id set default null;
@@ -39,4 +36,24 @@ databaseChangeLog:
         - onError: HALT
       changes:
         - sql: alter sequence mlr_data.horizontal_accuracy_seq owned by mlr_data.horizontal_accuracy.horizontal_accuracy_id;
-        - rollback: alter sequence mlr_data.horizontal_accuracy_seq owned by mlr;
+        - rollback: alter sequence mlr_data.horizontal_accuracy_seq owned by none;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.horizontal_accuracy.horizontal_accuracy_code_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index horizontal_accuracy_code_idx on mlr_data.horizontal_accuracy (code);
+        - rollback: drop index mlr_data.horizontal_accuracy_code_idx;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.horizontal_accuracy.horizontal_accuracy_name_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index horizontal_accuracy_name_idx on mlr_data.horizontal_accuracy (name);
+        - rollback: drop index mlr_data.horizontal_accuracy_name_idx;
