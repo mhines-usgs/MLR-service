@@ -31,3 +31,5 @@ cd to src/main/liquibase, then:
 	4a. Run as `java -DMLR_DATA_PASSWORD=<whatever you want> -DMLR_USER_PASSWORD=<whatever you want>` plus however you usually run liquibase.  Need to inject those password params in for some of the scripts.
 
 5. As mlr admin user, run `changeLog.yml`
+
+6. As mlr admin user, run `data/changeLog.yml` to load ref table data
