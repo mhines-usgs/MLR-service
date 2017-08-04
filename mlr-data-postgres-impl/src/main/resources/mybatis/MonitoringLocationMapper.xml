@@ -23,8 +23,8 @@
 		<association property="hydrologicUnit" resultMap="HydrologicUnitMap"/>
 		<association property="nationalAquifer" resultMap="NationalAquiferMap"/>
 		<association property="aquifer" resultMap="AquiferMap"/>
-		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency" resultMap="AgencyMap"/>
-		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use" resultMap="UseMap"/>
+		<collection property="agency" javaType="ArrayList" ofType="Agency" resultMap="AgencyMap"/>
+		<collection property="uses" javaType="ArrayList" ofType="Use" resultMap="UseMap"/>
 	</resultMap>
 	
 	<resultMap id="PrimaryAgencyMap" type="Agency">
@@ -90,8 +90,9 @@
 	<resultMap id="UseMap" type="Use">
 		<id property="id" column="use_id"/>
 		
-		<!--Currently no field in Use for storing use_type-->
-		<result property="" column="use_type"/>
+		<!--Currently no field in Use for storing use_type>
+		<result property="" column="use_type"/>-->
+		
 		<result property="code" column="use_code"/>
 		<result property="name" column="use_name"/>
 	</resultMap>
@@ -135,7 +136,11 @@
 			NA.name as national_aquifer_name,
 			NA.code as national_aquifer_code,
 			AQ.name as aquifer_name,
-			AQ.code as aquifer_code
+			AQ.code as aquifer_code,
+		    US.use_id,
+			US.name as use_name,
+			US.code as use_code,
+			US.use_type
 			from mlr_data.monitoring_location ML
 				left outer join mlr_data.agency PA on ML.primary_agency_id = PA.agency_id
 				left outer join mlr_data.monitoring_location_type MT on ML.monitoring_location_type_id = MT.monitoring_location_type_id
@@ -151,6 +156,22 @@
 				left outer join mlr_data.hydrologic_unit HU on ML.hydrologic_unit_id = HU.hydrologic_unit_id
 				left outer join mlr_data.national_aquifer NA on ML.national_aquifer_id = NA.national_aquifer_id
 				left outer join mlr_data.aquifer AQ on ML.aquifer_id = AQ.aquifer_id
+				left outer join mlr_data.monitoring_location_use_rel MUR on MUR.monitoring_location_id = ML.monitoring_location_id
+				left outer join mlr_data.use US on MUR.use_id = US.use_id
+	</select>
+	
+	<select id="getMonitoringLocation_Uses" resultMap="UseMap">
+		left outer join mlr_data.monitoring_location_use_rel MUR 
+			on MUR.monitoring_location_id = ML.monitoring_location_id
+			left outer join mlr_data.use US
+				on MUR.use_id = US.use_id
+	</select>
+	
+	<select id="getMonitoringLocation_Agencies" resultMap="UseMap">
+		left outer join mlr_data.monitoring_location_use_rel MUR 
+			on MUR.monitoring_location_id = ML.monitoring_location_id
+			left outer join mlr_data.use US
+				on MUR.use_id = US.use_id
 	</select>
 	
 	<!--Where caluses for dealing with optional parameters and ordering-->
