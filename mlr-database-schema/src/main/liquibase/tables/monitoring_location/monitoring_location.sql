@@ -3,8 +3,16 @@ create table mlr_data.monitoring_location
 ,primary_agency_id				integer not null
 ,name							text not null
 ,location_number				text
-,monitoring_location_type_id				integer
-,feature						jsonb
+,monitoring_location_type_id	integer
+,latitude_dd					numeric
+,longitude_dd					numeric
+,altitude						numeric
+,horizontal_accuracy_id			integer
+,horizontal_datum_id			integer
+,horizontal_method_id			integer
+,altitude_accuracy_m			numeric
+,altitude_datum_id				integer
+,altitude_method_id				integer
 ,country_id						integer
 ,state_id						integer
 ,county_id						integer

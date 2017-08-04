@@ -15,6 +15,26 @@ databaseChangeLog:
 
   - changeSet:
       author: kmschoep
+      id: "create.monitoring_location.altitude_datum_fk"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint altitude_datum_fk foreign key (altitude_datum_id) references mlr_data.altitude_datum (altitude_datum_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint altitude_datum_fk;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.monitoring_location.altitude_method_fk"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint altitude_method_fk foreign key (altitude_method_id) references mlr_data.altitude_method (altitude_method_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint altitude_method_fk;
+
+  - changeSet:
+      author: kmschoep
       id: "create.monitoring_location.aquifer_fk"
       preConditions:
         - onFail: MARK_RAN
@@ -42,6 +62,36 @@ databaseChangeLog:
       changes:
         - sql: alter table mlr_data.monitoring_location add constraint county_fk foreign key (county_id) references mlr_data.county (county_id) match simple on update no action on delete no action;
         - rollback: alter table mlr_data.monitoring_location drop constraint county_fk;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.monitoring_location.horizontal_accuracy_fk"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint horizontal_accuracy_fk foreign key (horizontal_accuracy_id) references mlr_data.horizontal_accuracy (horizontal_accuracy_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint horizontal_accuracy_fk;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.monitoring_location.horizontal_datum_fk"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint horizontal_datum_fk foreign key (horizontal_datum_id) references mlr_data.horizontal_datum (horizontal_datum_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint horizontal_datum_fk;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.monitoring_location.horizontal_method_fk"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: alter table mlr_data.monitoring_location add constraint horizontal_method_fk foreign key (horizontal_method_id) references mlr_data.horizontal_method (horizontal_method_id) match simple on update no action on delete no action;
+        - rollback: alter table mlr_data.monitoring_location drop constraint horizontal_method_fk;
 
   - changeSet:
       author: kmschoep
