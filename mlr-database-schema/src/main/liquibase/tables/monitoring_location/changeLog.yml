@@ -77,13 +77,3 @@ databaseChangeLog:
       changes:
         - sql: create index monitoring_location_name_idx on mlr_data.monitoring_location (name);
         - rollback: drop index mlr_data.monitoring_location_name_idx;
-
-  - changeSet:
-      author: kmschoep
-      id: "create.index.monitoring_location.feature_idx"
-      preConditions:
-        - onFail: MARK_RAN
-        - onError: HALT
-      changes:
-        - sql: create index monitoring_location_feature_idx on mlr_data.monitoring_location using gin (feature);
-        - rollback: drop index mlr_data.monitoring_location_feature_idx;
