@@ -185,6 +185,9 @@ databaseChangeLog:
 
   - changeSet:
       id: load.altitude_datum
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: CONTINUE
       author: mhines
       runOnChange: true
       changes:
@@ -200,6 +203,27 @@ databaseChangeLog:
             tableName: altitude_datum
             schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous altitude_datum.csv and rerun manually';
+
+  - changeSet:
+      id: load.altitude_method
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: CONTINUE
+      author: kmschoep
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: altitude_method
+            schemaName: mlr_data
+        - loadData:
+            encoding: UTF-8
+            file: altitude_method.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: altitude_method
+            schemaName: mlr_data
+        - rollback: select 'no rollback - you must restore previous altitude_method.csv and rerun manually';
 
   - changeSet:
       id: load.hydrologic_unit
