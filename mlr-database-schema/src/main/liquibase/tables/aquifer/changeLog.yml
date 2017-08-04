@@ -24,9 +24,6 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: aquifer
       changes:
         - sql: alter table mlr_data.aquifer alter column aquifer_id set default nextval('mlr_data.aquifer_seq');
         - rollback: alter table mlr_data.aquifer alter column aquifer_id set default null;
@@ -39,4 +36,24 @@ databaseChangeLog:
         - onError: HALT
       changes:
         - sql: alter sequence mlr_data.aquifer_seq owned by mlr_data.aquifer.aquifer_id;
-        - rollback: alter sequence mlr_data.aquifer_seq owned by mlr;
+        - rollback: alter sequence mlr_data.aquifer_seq owned by none;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.aquifer.aquifer_code_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index aquifer_code_idx on mlr_data.aquifer (code);
+        - rollback: drop index mlr_data.aquifer_code_idx;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.aquifer.aquifer_name_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index aquifer_name_idx on mlr_data.aquifer (name);
+        - rollback: drop index mlr_data.aquifer_name_idx;

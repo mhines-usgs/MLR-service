@@ -24,9 +24,6 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: monitoring_location
       changes:
         - sql: alter table mlr_data.monitoring_location add constraint location_number_uk unique (location_number)
         - rollback: alter table mlr_data.monitoring_location drop constraint location_number_uk
@@ -37,9 +34,6 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: monitoring_location
       changes:
         - sql: alter table mlr_data.monitoring_location alter column monitoring_location_id set default nextval('mlr_data.monitoring_location_seq');
         - rollback: alter table mlr_data.monitoring_location alter column monitoring_location_id set default null;
@@ -52,7 +46,7 @@ databaseChangeLog:
         - onError: HALT
       changes:
         - sql: alter sequence mlr_data.monitoring_location_seq owned by mlr_data.monitoring_location.monitoring_location_id;
-        - rollback: alter sequence mlr_data.monitoring_location_seq owned by mlr;
+        - rollback: alter sequence mlr_data.monitoring_location_seq owned by none;
 
   - changeSet:
       author: kmschoep
@@ -60,12 +54,9 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: monitoring_location
       changes:
         - sql: alter table mlr_data.monitoring_location alter column create_user set not null;
-        - rollback: alter table mlr_data.monitoring_location alter column create_user set nullable;
+        - rollback: alter table mlr_data.monitoring_location alter column create_user drop not null;
 
   - changeSet:
       author: kmschoep
@@ -73,9 +64,16 @@ databaseChangeLog:
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
-        - not:
-          - tableExists:
-              tableName: monitoring_location
       changes:
         - sql: alter table mlr_data.monitoring_location alter column create_date set not null;
-        - rollback: alter table mlr_data.monitoring_location alter column create_date set nullable;
+        - rollback: alter table mlr_data.monitoring_location alter column create_date drop not null;
+
+  - changeSet:
+      author: kmschoep
+      id: "create.index.monitoring_location.monitoring_location_name_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+      changes:
+        - sql: create index monitoring_location_name_idx on mlr_data.monitoring_location (name);
+        - rollback: drop index mlr_data.monitoring_location_name_idx;
