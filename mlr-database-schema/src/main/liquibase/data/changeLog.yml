@@ -10,6 +10,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: agency
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: agency.csv
@@ -17,6 +18,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: agency
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous agency.csv and rerun manually';
 
   - changeSet:
@@ -26,6 +28,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: aquifer
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: aquifer.csv
@@ -33,6 +36,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: aquifer
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous aquifer.csv and rerun manually';
 
   - changeSet:
@@ -42,6 +46,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: national_aquifer
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: national_aquifer.csv
@@ -49,6 +54,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: national_aquifer
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous national_aquifer.csv and rerun manually';
 
   - changeSet:
@@ -58,6 +64,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: country
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: country.csv
@@ -65,6 +72,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: country
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous country.csv and rerun manually';
 
   - changeSet:
@@ -74,6 +82,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: state
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: state.csv
@@ -81,6 +90,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: state
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous state.csv and rerun manually';
 
   - changeSet:
@@ -90,6 +100,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: county
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: county.csv
@@ -97,6 +108,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: county
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous county.csv and rerun manually';
 
   - changeSet:
@@ -106,6 +118,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: minor_civil_division
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: minor_civil_division.csv
@@ -113,6 +126,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: minor_civil_division
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous minor_civil_division.csv and rerun manually';
 
   - changeSet:
@@ -122,6 +136,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: horizontal_accuracy
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: horizontal_accuracy.csv
@@ -129,6 +144,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: horizontal_accuracy
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous horizontal_accuracy.csv and rerun manually';
 
   - changeSet:
@@ -138,6 +154,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: horizontal_datum
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: horizontal_datum.csv
@@ -145,6 +162,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: horizontal_datum
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous horizontal_datum.csv and rerun manually';
 
   - changeSet:
@@ -154,6 +172,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: horizontal_method
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: horizontal_method.csv
@@ -161,6 +180,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: horizontal_method
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous horizontal_method.csv and rerun manually';
 
   - changeSet:
@@ -170,6 +190,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: altitude_datum
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: altitude_datum.csv
@@ -177,6 +198,7 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: altitude_datum
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous altitude_datum.csv and rerun manually';
 
   - changeSet:
@@ -186,6 +208,7 @@ databaseChangeLog:
       changes:
         - delete:
             tableName: hydrologic_unit
+            schemaName: mlr_data
         - loadData:
             encoding: UTF-8
             file: hydrologic_unit.csv
@@ -193,4 +216,5 @@ databaseChangeLog:
             separator: ','
             quotchar: '"'
             tableName: hydrologic_unit
+            schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous hydrologic_unit.csv and rerun manually';
