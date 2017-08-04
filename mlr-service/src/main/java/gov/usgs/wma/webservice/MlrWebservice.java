@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import gov.usgs.wma.model.MonitoringLocation;
+import gov.usgs.wma.util.MlrInstanceSingleton;
 
 
 /**
@@ -55,12 +56,12 @@ public class MlrWebservice {
 	@Path("monitoringLocation/{locationNumber}")
 	public MonitoringLocation getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber) {
 		//comment back in when DAO is hooked up
-//		MonitoringLocation fetchedLocation = service.getMonitoringLocationByLocationNumber(locationNumber);
-//		return fetchedLocation;
-		MonitoringLocation dummy = new MonitoringLocation();
-		dummy.setLocationNumber(locationNumber);
-		dummy.setName("DUMMY");
-		return dummy;
+		MonitoringLocation fetchedLocation = MlrInstanceSingleton.getDataService().getMonitoringLocationByLocationNumber(locationNumber);
+		return fetchedLocation;
+	//	MonitoringLocation dummy = new MonitoringLocation();
+	//	dummy.setLocationNumber(locationNumber);
+	//	dummy.setName("DUMMY");
+	//	return dummy;
 	}
 	
 	/**

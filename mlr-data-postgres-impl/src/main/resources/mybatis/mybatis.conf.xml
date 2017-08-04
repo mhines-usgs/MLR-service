@@ -16,16 +16,23 @@
 
 	<typeAliases>
 		<typeAlias alias="Agency" type="gov.usgs.wma.model.Agency"/>
+		<typeAlias alias="AltitudeDatum" type="gov.usgs.wma.model.AltitudeDatum"/>
+		<typeAlias alias="AltitudeMethod" type="gov.usgs.wma.model.AltitudeMethod"/>
+		<typeAlias alias="Aquifer" type="gov.usgs.wma.model.Aquifer"/>
+		<typeAlias alias="Country" type="gov.usgs.wma.model.Country"/>
+		<typeAlias alias="County" type="gov.usgs.wma.model.County"/>
 		<typeAlias alias="ErrorModel" type="gov.usgs.wma.model.ErrorModel"/>
 		<typeAlias alias="Feature" type="gov.usgs.wma.model.Feature"/>
-		<typeAlias alias="GeoCodeBase" type="gov.usgs.wma.model.GeoCodeBase"/>
-		<typeAlias alias="Geometry" type="gov.usgs.wma.model.Geometry"/>
+		<typeAlias alias="HorizontalAccuracy" type="gov.usgs.wma.model.HorizontalAccuracy"/>
+		<typeAlias alias="HorizontalDatum" type="gov.usgs.wma.model.HorizontalDatum"/>
+		<typeAlias alias="HorizontalMethod" type="gov.usgs.wma.model.HorizontalMethod"/>
+		<typeAlias alias="HydrologicUnit" type="gov.usgs.wma.model.HydrologicUnit"/>
+		<typeAlias alias="MinorCivilDivisionCode" type="gov.usgs.wma.model.MinorCivilDivisionCode"/>
 		<typeAlias alias="MonitoringLocation" type="gov.usgs.wma.model.MonitoringLocation"/>
-		<typeAlias alias="MonitoringLocationAquifer" type="gov.usgs.wma.model.MonitoringLocationAquifer"/>
 		<typeAlias alias="MonitoringLocationType" type="gov.usgs.wma.model.MonitoringLocationType"/>
+		<typeAlias alias="NationalAquifer" type="gov.usgs.wma.model.NationalAquifer"/>
 		<typeAlias alias="Point" type="gov.usgs.wma.model.Point"/>
-		<typeAlias alias="PointProperties" type="gov.usgs.wma.model.PointProperties"/>
-		<typeAlias alias="Point3D" type="gov.usgs.wma.model.Point3d"/>
+		<typeAlias alias="State" type="gov.usgs.wma.model.State"/>
 		<typeAlias alias="Use" type="gov.usgs.wma.model.Use"/>
 	</typeAliases>
 	

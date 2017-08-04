@@ -7,47 +7,62 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
- @XmlType(name = "ErrorModel", propOrder =
-    { "code", "message"
+ @XmlType(name = "HorizontalAccuracy", propOrder =
+    { "id", "code", "name"
 })
 
-@XmlRootElement(name="ErrorModel")
-public class ErrorModel  {
+@XmlRootElement(name="HorizontalAccuracy")
+
+public class HorizontalAccuracy  {
   
+  @XmlElement(name="id")
+  private Long id = null;
+
   @XmlElement(name="code")
-  private Integer code = null;
+  private String code = null;
 
-  @XmlElement(name="message")
-  private String message = null;
+  @XmlElement(name="name")
+  private String name = null;
 
+ /**
+   * Get id
+   * @return id
+  **/
+  public Long getId() {
+    return id;
+  }
+  public void setId(Long id) {
+    this.id = id;
+  }
  /**
    * Get code
    * @return code
   **/
-  public Integer getCode() {
+  public String getCode() {
     return code;
   }
-  public void setCode(Integer code) {
+  public void setCode(String code) {
     this.code = code;
   }
  /**
-   * Get message
-   * @return message
+   * Get name
+   * @return name
   **/
-  public String getMessage() {
-    return message;
+  public String getName() {
+    return name;
   }
-  public void setMessage(String message) {
-    this.message = message;
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorModel {\n");
+    sb.append("class HorizontalAccuracy {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

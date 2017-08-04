@@ -1,54 +1,82 @@
 package gov.usgs.wma.model;
 
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Point", propOrder
-	= {"coordinates"
-	})
+ @XmlType(name = "Point", propOrder =
+    { "latitude", "longitude", "altitude"
+})
 
-/**
- * GeoJson geometry
- */
-public class Point extends Geometry {
+@XmlRootElement(name="Point")
 
-	@XmlElement(name = "coordinates")
-	private Point3d coordinates = null;
+public class Point  {
 
-	/**
-	 * Get coordinates
-	 *
-	 * @return coordinates
-	 */
-	public Point3d getCoordinates() {
-		return coordinates;
-	}
+  @XmlElement(name="latitude")
+  private BigDecimal latitude = null;
 
-	public void setCoordinates(Point3d coordinates) {
-		this.coordinates = coordinates;
-	}
+  @XmlElement(name="longitude")
+  private BigDecimal longitude = null;
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("class Point {\n");
-		sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-		sb.append("    coordinates: ").append(toIndentedString(coordinates)).append("\n");
-		sb.append("}");
-		return sb.toString();
-	}
+  @XmlElement(name="altitude")
+  private BigDecimal altitude = null;
 
-	/**
-	 * Convert the given object to string with each line indented by 4
-	 * spaces (except the first line).
-	 */
-	private static String toIndentedString(Object o) {
-		if (o == null) {
-			return "null";
-		}
-		return o.toString().replace("\n", "\n    ");
-	}
+ /**
+   * Get latitude
+   * @return latitude
+  **/
+  public BigDecimal getLatitude() {
+    return latitude;
+  }
+  public void setLatitude(BigDecimal latitude) {
+    this.latitude = latitude;
+  }
+ /**
+   * Get longitude
+   * @return longitude
+  **/
+  public BigDecimal getLongitude() {
+    return longitude;
+  }
+  public void setLongitude(BigDecimal longitude) {
+    this.longitude = longitude;
+  }
+ /**
+   * Get altitude
+   * @return altitude
+  **/
+  public BigDecimal getAltitude() {
+    return altitude;
+  }
+  public void setAltitude(BigDecimal altitude) {
+    this.altitude = altitude;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Point {\n");
+    
+    sb.append("    latitude: ").append(toIndentedString(latitude)).append("\n");
+    sb.append("    longitude: ").append(toIndentedString(longitude)).append("\n");
+    sb.append("    altitude: ").append(toIndentedString(altitude)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+
