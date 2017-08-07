@@ -89,10 +89,7 @@
 	
 	<resultMap id="UseMap" type="Use">
 		<id property="id" column="use_id"/>
-		
-		<!--Currently no field in Use for storing use_type>
-		<result property="" column="use_type"/>-->
-		
+		<result property="rank" column="use_rank"/>		
 		<result property="code" column="use_code"/>
 		<result property="name" column="use_name"/>
 	</resultMap>
@@ -137,6 +134,7 @@
 			NA.code as national_aquifer_code,
 			AQ.name as aquifer_name,
 			AQ.code as aquifer_code,
+			MUR.rank as use_rank,
 		    US.use_id,
 			US.name as use_name,
 			US.code as use_code,
