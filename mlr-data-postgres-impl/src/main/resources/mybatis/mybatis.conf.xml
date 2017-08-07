@@ -4,7 +4,7 @@
 
 <configuration>
 	<!-- Not sure if these are needed. Values are from GDAWS_AQ_SYNC-->
-	<!--settings>
+	<settings>
 		<setting name="cacheEnabled" value="false"/>
 		<setting name="lazyLoadingEnabled" value="false"/>
 		<setting name="aggressiveLazyLoading" value="false"/>
@@ -12,7 +12,7 @@
 		<setting name="defaultStatementTimeout" value="1300"/>
 		<setting name="logImpl" value="SLF4J"/>
 		<setting name="autoMappingBehavior" value="PARTIAL"/>
-	</settings-->
+	</settings>
 
 	<typeAliases>
 		<typeAlias alias="Agency" type="gov.usgs.wma.model.Agency"/>

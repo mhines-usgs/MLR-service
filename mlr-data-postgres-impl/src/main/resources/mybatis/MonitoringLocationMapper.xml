@@ -105,7 +105,7 @@
 			<include refid="basicWhereAndOrder"/>
 	</select>
 	
-	<!--Returns a list of retrieved MLEntity records-->
+	<!--Returns a list of retrieved Monitoring Location records-->
 	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap">
 		select 
 			ML.*,
@@ -140,7 +140,10 @@
 		    US.use_id,
 			US.name as use_name,
 			US.code as use_code,
-			US.use_type
+			US.use_type,
+			AG.agency_id,
+			AG.code as agency_code,
+			AG.name as agency_name
 			from mlr_data.monitoring_location ML
 				left outer join mlr_data.agency PA on ML.primary_agency_id = PA.agency_id
 				left outer join mlr_data.monitoring_location_type MT on ML.monitoring_location_type_id = MT.monitoring_location_type_id
@@ -158,31 +161,20 @@
 				left outer join mlr_data.aquifer AQ on ML.aquifer_id = AQ.aquifer_id
 				left outer join mlr_data.monitoring_location_use_rel MUR on MUR.monitoring_location_id = ML.monitoring_location_id
 				left outer join mlr_data.use US on MUR.use_id = US.use_id
-	</select>
-	
-	<select id="getMonitoringLocation_Uses" resultMap="UseMap">
-		left outer join mlr_data.monitoring_location_use_rel MUR 
-			on MUR.monitoring_location_id = ML.monitoring_location_id
-			left outer join mlr_data.use US
-				on MUR.use_id = US.use_id
-	</select>
-	
-	<select id="getMonitoringLocation_Agencies" resultMap="UseMap">
-		left outer join mlr_data.monitoring_location_use_rel MUR 
-			on MUR.monitoring_location_id = ML.monitoring_location_id
-			left outer join mlr_data.use US
-				on MUR.use_id = US.use_id
+				left outer join mlr_data.monitoring_location_agency_rel MAR on MAR.monitoring_location_id = ML.monitoring_location_id
+				left outer join mlr_data.agency AG on MAR.agency_id = AG.agency_id
+			<include refid="basicWhereAndOrder"/>
 	</select>
 	
 	<!--Where caluses for dealing with optional parameters and ordering-->
 	<!--TODO: Add additional query options here-->
 	<sql id="basicWhereAndOrder">
 		<where>
-			<if test="id != null">AND id = #{id}</if>
-			<if test="locationNumber != null">AND location_number = '#{locationNumber}'</if>
-			<if test="name != null">AND name = '#{name}'</if>
+			<if test="id != null">AND monitoring_location_id = #{id}</if>
+			<if test="locationNumber != null">AND location_number = #{locationNumber}</if>
+			<if test="name != null">AND name = #{name}</if>
 			<if test="number != null">AND number = #{number}></if>
 		</where>
-		ORDER BY id
+		ORDER BY monitoring_location_id
 	</sql>
 </mapper>
