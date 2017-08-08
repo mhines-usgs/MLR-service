@@ -19,6 +19,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import gov.usgs.wma.model.MonitoringLocation;
+import gov.usgs.wma.util.MlrInstanceSingleton;
+import java.util.HashMap;
+import java.util.Map;
+import javax.ws.rs.NotFoundException;
 
 
 /**
@@ -54,13 +58,13 @@ public class MlrWebservice {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocation/{locationNumber}")
 	public MonitoringLocation getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber) {
-		//comment back in when DAO is hooked up
-//		MonitoringLocation fetchedLocation = service.getMonitoringLocationByLocationNumber(locationNumber);
-//		return fetchedLocation;
-		MonitoringLocation dummy = new MonitoringLocation();
-		dummy.setLocationNumber(locationNumber);
-		dummy.setName("DUMMY");
-		return dummy;
+		MonitoringLocation fetchedLocation = MlrInstanceSingleton.getDataService().getMonitoringLocationByLocationNumber(locationNumber);
+		
+		if(fetchedLocation == null){
+			throw new NotFoundException();
+		}
+		
+		return fetchedLocation;
 	}
 	
 	/**
@@ -102,14 +106,10 @@ public class MlrWebservice {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocations")
 	public List<MonitoringLocation> getLocations(@QueryParam("query") final String query) {
-		//TODO Call java core service when available
-		MonitoringLocation dummy = new MonitoringLocation();
-		dummy.setLocationNumber("1");
-		dummy.setName("DUMMY1");
+		//TODO: Convert query params to param map
+		Map<String, Object> params = new HashMap<>();
+		List<MonitoringLocation> fetchedLocations = MlrInstanceSingleton.getDataService().getMonitoringLocations(params);
 		
-		MonitoringLocation dummy2 = new MonitoringLocation();
-		dummy2.setLocationNumber("2");
-		dummy2.setName("DUMMY2");
-		return Arrays.asList(new MonitoringLocation[] { dummy, dummy2 });
+		return fetchedLocations;
 	}
 }

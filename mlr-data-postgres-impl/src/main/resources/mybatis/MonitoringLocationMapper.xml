@@ -4,94 +4,95 @@
 <mapper namespace="gov.usgs.wma.mapper.MonitoringLocationMapper">
 	<!--Map Monitoring Locations-->
 	<resultMap id="MonitoringLocationMap" type="MonitoringLocation">
-		<id property="id" column="id"/>
+		<id property="id" column="monitoring_location_id"/>
 		<result property="locationNumber" column="location_number"/>
 		<result property="name" column="name"/>
-		<result property="number" column="number"/>
-		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
-		<collection property="agency" column="monitoring_location_id" javaType="ArrayList" ofType="Agency"/>
-		<association property="primaryAgency" resultMap="AgencyMap"/>
-		<association property="locationGeometry" resultMap="FeatureMap"/>
-		<association property="country" resultMap="GeoCodeBaseMap"/>
-		<association property="state" resultMap="GeoCodeBaseMap"/>
-		<association property="county" resultMap="GeoCodeBaseMap"/>
-		<association property="minorCivilDivisionCode" resultMap="GeoCodeBaseMap"/>
-		<association property="hydrologicUnit" resultMap="GeoCodeBaseMap"/>
-		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
-		<association property="aquifer" resultMap="MonitoringLocationAquiferMap"/>
-		<collection property="uses" column="monitoring_location_id" javaType="ArrayList" ofType="Use"/>
+		
+		<!--Currently no fields in MonitoringLocation for storing these values>
 		<result property="" column="create_date"/>
 		<result property="" column="create_user"/>
 		<result property="" column="last_update"/>
-		<result property="" column="last_update_user"/>
+		<result property="" column="last_update_user"/> -->
+		
+		<association property="monitoringLocationType" resultMap="MonitoringLocationTypeMap"/>
+		<association property="primaryAgency" resultMap="PrimaryAgencyMap"/>
+		<association property="country" resultMap="CountryMap"/>
+		<association property="state" resultMap="StateMap"/>
+		<association property="county" resultMap="CountyMap"/>
+		<association property="minorCivilDivisionCode" resultMap="MinorCivilDivisionCodeMap"/>
+		<association property="hydrologicUnit" resultMap="HydrologicUnitMap"/>
+		<association property="nationalAquifer" resultMap="NationalAquiferMap"/>
+		<association property="aquifer" resultMap="AquiferMap"/>
+		<collection property="agency" javaType="ArrayList" ofType="Agency" resultMap="AgencyMap"/>
+		<collection property="uses" javaType="ArrayList" ofType="Use" resultMap="UseMap"/>
 	</resultMap>
 	
-	<!-- Map Agnecies-->
+	<resultMap id="PrimaryAgencyMap" type="Agency">
+		<id property="id" column="primary_agency_id"/>
+		<result property="name" column="primary_agency_name"/>
+		<result property="code" column="primary_agency_code"/>
+	</resultMap>
+	
 	<resultMap id="AgencyMap" type="Agency">
-		<id property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="code" column="code"/>
-	</resultMap>
-	
-	<!-- Map Features-->
-	<resultMap id="FeatureMap" type="Feature">
-		<id column="id"/>
-		<result property="type" column="type"/>
-		<association property="geometry" resultMap="PointMap"/>
-		<result property="pointProperties" column="point_properties"/>
-	</resultMap>
-	
-	<!-- Map GeoCodeBases-->
-	<resultMap id="GeoCodeBaseMap" type="GeoCodeBase">
-		<id property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="code" column="code"/>
-	</resultMap>
-	
-	<!-- Map Geometries-->
-	<resultMap id="GeometryMap" type="Geometry">
-		<result property="type" column="type"/>
-	</resultMap>
-	
-	<!-- Map Points-->
-	<resultMap id="PointMap" type="Point" extends="GeometryMap">
-		<collection property="coordinates" column="coordinates" javaType="Point3D" ofType="BigDecimal"/>
+		<id property="id" column="agency_id"/>
+		<result property="name" column="agency_name"/>
+		<result property="code" column="agency_code"/>
 	</resultMap>
 		
-	<!-- Map Point Properties-->
-	<resultMap id="PointPropertiesMap" type="PointProperties">
-		<result property="horizontalAccuracyCode" column="horizontal_accuracy_code"/>
-		<result property="horizontalDatum" column="horizontal_datum"/>
-		<result property="horizontalMethodCode" column="horizontal_method_code"/>
-		<result property="altitudeAccuracy" column="altitude_accuracy"/>
-		<result property="altitudeDatum" column="altitude_datum"/>
-		<result property="altitudeMethodCode" column="altitude_method_code"/>
+	<resultMap id="CountryMap" type="Country">
+		<id property="id" column="country_id"/>
+		<result property="name" column="country_name"/>
+		<result property="code" column="country_code"/>
 	</resultMap>
 	
-	<!-- Map Monitoring Location Aquifers-->
-	<resultMap id="MonitoringLocationAquiferMap" type="MonitoringLocationAquifer">
-		<id property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="code" column="code"/>
-		<association property="nationalAquifer" resultMap="MonitoringLocationAquiferMap"/>
+	<resultMap id="StateMap" type="State">
+		<id property="id" column="state_id"/>
+		<result property="name" column="state_name"/>
+		<result property="code" column="state_code"/>
 	</resultMap>
 	
-	<!-- Map Monitoring Location Types-->
+	<resultMap id="CountyMap" type="County">
+		<id property="id" column="county_id"/>
+		<result property="name" column="county_name"/>
+		<result property="code" column="county_code"/>
+	</resultMap>
+	
+	<resultMap id="MinorCivilDivisionCodeMap" type="MinorCivilDivisionCode">
+		<id property="id" column="minor_civil_division_id"/>
+		<result property="name" column="minor_civil_division_name"/>
+		<result property="code" column="minor_civil_division_code"/>
+	</resultMap>
+	
+	<resultMap id="HydrologicUnitMap" type="HydrologicUnit">
+		<id property="id" column="hydrologic_unit_id"/>
+		<result property="name" column="hydrologic_unit_name"/>
+		<result property="code" column="hydrologic_unit_code"/>
+	</resultMap>
+	
+	<resultMap id="AquiferMap" type="Aquifer">
+		<id property="id" column="aquifer_id"/>
+		<result property="name" column="aquifer_name"/>
+		<result property="code" column="aquifer_code"/>
+	</resultMap>
+	
+	<resultMap id="NationalAquiferMap" type="NationalAquifer">
+		<id property="id" column="national_aquifer_id"/>
+		<result property="name" column="national_aquifer_name"/>
+		<result property="code" column="national_aquifer_code"/>
+	</resultMap>
+	
 	<resultMap id="MonitoringLocationTypeMap" type="MonitoringLocationType">
-		<id property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="code" column="code"/>
+		<id property="id" column="monitoring_location_type_id"/>
+		<result property="name" column="monitoring_location_type_name"/>
+		<result property="code" column="monitoring_location_type_code"/>
 	</resultMap>
 	
-	<!-- Map Uses-->
 	<resultMap id="UseMap" type="Use">
-		<id property="id" column="id"/>
-		<result property="rank" column="rank"/>
-		<result property="code" column="code"/>
-		<result property="name" column="name"/>
+		<id property="id" column="use_id"/>
+		<result property="rank" column="use_rank"/>		
+		<result property="code" column="use_code"/>
+		<result property="name" column="use_name"/>
 	</resultMap>
-	
-	
 	
 	<!--Returns a count of the number of MLEntity instances in the table-->
 	<select id="getCount" parameterType="map" resultType="int">
@@ -101,10 +102,65 @@
 			<include refid="basicWhereAndOrder"/>
 	</select>
 	
-	<!--Returns a list of retrieved MLEntity records-->
-	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap" fetchSize="250000" >
-		SELECT *
-		FROM monitoring_location
+	<!--Returns a list of retrieved Monitoring Location records-->
+	<select id="getMonitoringLocations" resultMap="MonitoringLocationMap">
+		select 
+			ML.*,
+			PA.name as primary_agency_name,
+			PA.code as primary_agency_code,
+			MT.name as monitoring_location_type_name,
+			MT.code as monitoring_location_type_code,
+			HA.name as horizontal_accuracy_name,
+			HA.code as horizontal_accuracy_code,
+			HD.name as horizontal_datum_name,
+			HD.code as horizontal_datum_code,
+			HM.name as horizontal_measurement_name,
+			HM.code as horizontal_measurement_code,
+			AD.name as altitude_datum_name,
+			AD.code as altitude_datum_code,
+			AM.name as altitude_method_name,
+			AM.code as altitude_method_code,
+			CR.name as country_name,
+			CR.code as country_code,
+			ST.name as state_name,
+			ST.code as state_code,
+			CO.name as county_name,
+			CO.code as county_code,
+			MC.name as minor_civil_division_name,
+			MC.code as minor_civil_division_code,
+			HU.name as hydrologic_unit_name,
+			HU.code as hydrologic_unit_code,
+			NA.name as national_aquifer_name,
+			NA.code as national_aquifer_code,
+			AQ.name as aquifer_name,
+			AQ.code as aquifer_code,
+			MUR.rank as use_rank,
+		    US.use_id,
+			US.name as use_name,
+			US.code as use_code,
+			US.use_type,
+			AG.agency_id,
+			AG.code as agency_code,
+			AG.name as agency_name
+			from mlr_data.monitoring_location ML
+				left outer join mlr_data.agency PA on ML.primary_agency_id = PA.agency_id
+				left outer join mlr_data.monitoring_location_type MT on ML.monitoring_location_type_id = MT.monitoring_location_type_id
+				left outer join mlr_data.horizontal_accuracy HA on ML.horizontal_accuracy_id = HA.horizontal_accuracy_id
+				left outer join mlr_data.horizontal_datum HD on ML.horizontal_datum_id = HD.horizontal_datum_id
+				left outer join mlr_data.horizontal_method HM on ML.horizontal_method_id = HM.horizontal_method_id
+				left outer join mlr_data.altitude_datum AD on ML.altitude_datum_id = AD.altitude_datum_id
+				left outer join mlr_data.altitude_method AM on ML.altitude_method_id = AM.altitude_method_id
+				left outer join mlr_data.country CR on ML.country_id = CR.country_id
+				left outer join mlr_data.state ST on ML.state_id = ST.state_id
+				left outer join mlr_data.county CO on ML.county_id = CO.county_id
+				left outer join mlr_data.minor_civil_division MC on ML.minor_civil_division_id = MC.minor_civil_division_id
+				left outer join mlr_data.hydrologic_unit HU on ML.hydrologic_unit_id = HU.hydrologic_unit_id
+				left outer join mlr_data.national_aquifer NA on ML.national_aquifer_id = NA.national_aquifer_id
+				left outer join mlr_data.aquifer AQ on ML.aquifer_id = AQ.aquifer_id
+				left outer join mlr_data.monitoring_location_use_rel MUR on MUR.monitoring_location_id = ML.monitoring_location_id
+				left outer join mlr_data.use US on MUR.use_id = US.use_id
+				left outer join mlr_data.monitoring_location_agency_rel MAR on MAR.monitoring_location_id = ML.monitoring_location_id
+				left outer join mlr_data.agency AG on MAR.agency_id = AG.agency_id
 			<include refid="basicWhereAndOrder"/>
 	</select>
 	
@@ -112,11 +168,11 @@
 	<!--TODO: Add additional query options here-->
 	<sql id="basicWhereAndOrder">
 		<where>
-			<if test="id != null">AND id = #{id}</if>
-			<if test="locationNumber != null">AND location_number = '#{locationNumber}'</if>
-			<if test="name != null">AND name = '#{name}'</if>
+			<if test="id != null">AND monitoring_location_id = #{id}</if>
+			<if test="locationNumber != null">AND location_number = #{locationNumber}</if>
+			<if test="name != null">AND name = #{name}</if>
 			<if test="number != null">AND number = #{number}></if>
 		</where>
-		ORDER BY id
+		ORDER BY monitoring_location_id
 	</sql>
 </mapper>

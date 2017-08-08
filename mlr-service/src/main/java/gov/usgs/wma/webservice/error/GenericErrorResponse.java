@@ -11,13 +11,15 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * @author thongsav
  */
-@XmlType(propOrder = {"status", "message", "serviceId"})
+@XmlType(propOrder = {"status", "code", "message", "serviceId"})
 @XmlRootElement(name = "error")
 public class GenericErrorResponse {
 
 	private String message;
 
 	private Response.Status status;
+	
+	private Integer code;
 
 	private String serviceId;
 
@@ -63,6 +65,11 @@ public class GenericErrorResponse {
 	public Response.Status getStatus() {
 		return status;
 	}
+	
+	@XmlElement(name = "code")
+	public Integer getCode() {
+		return code;
+	}
 
 	/**
 	 *
@@ -70,5 +77,6 @@ public class GenericErrorResponse {
 	 */
 	public void setStatus(Response.Status status) {
 		this.status = status;
+		this.code = status.getStatusCode();
 	}
 }

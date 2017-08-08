@@ -7,87 +7,75 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "NewMonitoringLocationMonitoringLocationType", propOrder
-	= {"id", "name", "code"
-	})
+ @XmlType(name = "MonitoringLocationType", propOrder =
+    { "id", "name", "code"
+})
 
-@XmlRootElement(name = "NewMonitoringLocationMonitoringLocationType")
-/**
- * The type of monitoring location
- */
-public class MonitoringLocationType {
+@XmlRootElement(name="MonitoringLocationType")
 
-	@XmlElement(name = "id")
-	private Long id = null;
+public class MonitoringLocationType  {
+  
+  @XmlElement(name="id")
+  private Long id = null;
 
-	@XmlElement(name = "name")
-	private String name = null;
+  @XmlElement(name="name")
+  private String name = null;
 
-	@XmlElement(name = "code")
-	private String code = null;
+  @XmlElement(name="code")
+  private String code = null;
 
-	/**
-	 * Get id
-	 *
-	 * @return id
-	 *
-	 */
-	public Long getId() {
-		return id;
-	}
+ /**
+   * Get id
+   * @return id
+  **/
+  public Long getId() {
+    return id;
+  }
+  public void setId(Long id) {
+    this.id = id;
+  }
+ /**
+   * Get name
+   * @return name
+  **/
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+ /**
+   * Get code
+   * @return code
+  **/
+  public String getCode() {
+    return code;
+  }
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class MonitoringLocationType {\n");
+    
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
 
-	/**
-	 * Get name
-	 *
-	 * @return name
-	 *
-	 */
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Get code
-	 *
-	 * @return code
-	 *
-	 */
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("class NewMonitoringLocationMonitoringLocationType {\n");
-
-		sb.append("    id: ").append(toIndentedString(id)).append("\n");
-		sb.append("    name: ").append(toIndentedString(name)).append("\n");
-		sb.append("    code: ").append(toIndentedString(code)).append("\n");
-		sb.append("}");
-		return sb.toString();
-	}
-
-	/**
-	 * Convert the given object to string with each line indented by 4
-	 * spaces (except the first line).
-	 */
-	private static String toIndentedString(Object o) {
-		if (o == null) {
-			return "null";
-		}
-		return o.toString().replace("\n", "\n    ");
-	}
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+
