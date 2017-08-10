@@ -1,6 +1,6 @@
 create table mlr_data.altitude_method
 (altitude_method_id		integer not null
-,code							text constraint altitude_method_code_ck check (code in ('A', 'D', 'G', 'L', 'M', 'N', 'R', 'U'))
+,code							text
 ,name							text
 ,constraint altitude_method_pk
   primary key (altitude_method_id)
