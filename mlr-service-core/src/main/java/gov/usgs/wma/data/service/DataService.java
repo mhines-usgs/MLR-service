@@ -20,8 +20,8 @@ public class DataService {
 		this.monitoringLocationDao = monitoringLocationDao;
 	}
 		
-	public MonitoringLocation getMonitoringLocationByLocationNumber(String locationNumber){
-		return monitoringLocationDao.getMonitoringLocationByLocationNumber(locationNumber);
+	public MonitoringLocation getMonitoringLocationById(Long id){
+		return monitoringLocationDao.getMonitoringLocationById(id);
 	}
 	
 	public List<MonitoringLocation> getMonitoringLocations(Map<String, Object> params){

@@ -42,10 +42,12 @@ public class MlrGetRequestHandler implements MicroserviceHandler {
 	 */
 	@Override
 	public void handle(String requestId, String serviceRequestId, Map<String, Object> params, byte[] body, MicroserviceMsgservice msgService) throws IOException {
-		String locationNumber = MessageUtils.getStringFromHeaders(params, "locationNumber");
-		log.trace("Get request for location {}", locationNumber);
+		String strId = MessageUtils.getStringFromHeaders(params, "id");
+		log.trace("Get request for location id {}", strId);
 		
-		MonitoringLocation fetchedLocation = service.getMonitoringLocationByLocationNumber(locationNumber);
+		Long id = Long.parseLong(strId);
+		
+		MonitoringLocation fetchedLocation = service.getMonitoringLocationById(id);
 		
 		CompleteSender.sendRetrievalComplete(requestId, serviceRequestId, 
 				MlrGsonFactory.getConfiguredGson().toJson(fetchedLocation).getBytes(),

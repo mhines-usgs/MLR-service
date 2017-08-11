@@ -51,14 +51,14 @@ public class MlrWebservice {
 	 * retrieves a specific location
 	 * 
 	 * @param req The raw HTTP request received from the UI
-	 * @param locationNumber location number for data to retrieve
+	 * @param id id for data to retrieve
 	 * @return a location
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocation/{locationNumber}")
-	public MonitoringLocation getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber) {
-		MonitoringLocation fetchedLocation = MlrInstanceSingleton.getDataService().getMonitoringLocationByLocationNumber(locationNumber);
+	public MonitoringLocation getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("id") final Long id) {
+		MonitoringLocation fetchedLocation = MlrInstanceSingleton.getDataService().getMonitoringLocationById(id);
 		
 		if(fetchedLocation == null){
 			throw new NotFoundException();
@@ -90,9 +90,9 @@ public class MlrWebservice {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocation/{locationNumber}")
-	public MonitoringLocation updateMonitoringLocation(@Context final HttpServletRequest req, @PathParam("locationNumber") final String locationNumber, final MonitoringLocation newLocationJson) {
+	public MonitoringLocation updateMonitoringLocation(@Context final HttpServletRequest req, @PathParam("id") final Long id, final MonitoringLocation newLocationJson) {
 		//TODO Call java core service when available
-		newLocationJson.setLocationNumber(locationNumber);
+		newLocationJson.setId(id);
 		return newLocationJson;
 	}
 	
