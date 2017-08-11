@@ -1,0 +1,7 @@
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://${mlrDbHost}:${mlrDbPort}/mlr"
+    username: ${mlrUser}
+    password: ${mlrPass}
+    driver-class-name: org.postgresql.Driver

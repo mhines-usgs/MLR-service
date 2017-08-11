@@ -1,0 +1,5 @@
+mlrDbHost: localhost
+mlrDbPort: 5432
+mlrUser: mlr
+mlrPass: password
+mlrServicePwd: password
