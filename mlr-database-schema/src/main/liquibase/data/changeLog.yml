@@ -242,3 +242,22 @@ databaseChangeLog:
             tableName: hydrologic_unit
             schemaName: mlr_data
         - rollback: select 'no rollback - you must restore previous hydrologic_unit.csv and rerun manually';
+
+
+  - changeSet:
+      id: load.use
+      author: kmschoep
+      runOnChange: true
+      changes:
+        - delete:
+            tableName: use
+            schemaName: mlr_data
+        - loadData:
+            encoding: UTF-8
+            file: use.csv
+            relativeToChangelogFile: true
+            separator: ','
+            quotchar: '"'
+            tableName: use
+            schemaName: mlr_data
+        - rollback: select 'no rollback - you must restore previous use.csv and rerun manually';

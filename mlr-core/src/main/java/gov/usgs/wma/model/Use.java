@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
  @XmlType(name = "Use", propOrder =
-    { "id", "rank", "code", "name"
+    { "id", "rank", "code", "name", "useType"
 })
 
 @XmlRootElement(name="Use")
@@ -25,6 +25,9 @@ public class Use  {
 
   @XmlElement(name="name")
   private String name = null;
+
+  @XmlElement(name="useType")
+  private String useType = null;
 
  /**
    * Get id
@@ -67,6 +70,17 @@ public class Use  {
     this.name = name;
   }
 
+  /**
+   * Get use type
+   * @return use type
+  **/
+  public String getUseType() {
+    return name;
+  }
+  public void setUseType(String useType) {
+    this.useType = useType;
+  }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -76,6 +90,7 @@ public class Use  {
     sb.append("    rank: ").append(toIndentedString(rank)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    useType: ").append(toIndentedString(useType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -89,9 +89,10 @@
 	
 	<resultMap id="UseMap" type="Use">
 		<id property="id" column="use_id"/>
-		<result property="rank" column="use_rank"/>		
+		<result property="rank" column="use_rank"/>
 		<result property="code" column="use_code"/>
 		<result property="name" column="use_name"/>
+		<result property="useType" column="use_type"/>
 	</resultMap>
 	
 	<!--Returns a count of the number of MLEntity instances in the table-->
@@ -138,7 +139,7 @@
 		    US.use_id,
 			US.name as use_name,
 			US.code as use_code,
-			US.use_type,
+			US.use_type as use_type,
 			AG.agency_id,
 			AG.code as agency_code,
 			AG.name as agency_name
