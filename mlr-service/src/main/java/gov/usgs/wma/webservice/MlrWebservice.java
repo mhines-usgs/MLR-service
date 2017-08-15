@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import gov.usgs.wma.data.service.DataService;
 import gov.usgs.wma.model.MonitoringLocation;
 import gov.usgs.wma.util.MlrInstanceSingleton;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class MlrWebservice {
 	 * May want to use dependency injection later
 	 */
 	//comment back in when DAO is hooked up
-//	DataService service = MlrInstanceSingleton.getDataService();
+	DataService service = MlrInstanceSingleton.getDataService();
 	
 	/**
 	 * Default Constructor
@@ -58,7 +59,7 @@ public class MlrWebservice {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("monitoringLocation/{locationNumber}")
 	public MonitoringLocation getMonitoringLocation(@Context final HttpServletRequest req, @PathParam("id") final Long id) {
-		MonitoringLocation fetchedLocation = MlrInstanceSingleton.getDataService().getMonitoringLocationById(id);
+		MonitoringLocation fetchedLocation = service.getMonitoringLocationById(id);
 		
 		if(fetchedLocation == null){
 			throw new NotFoundException();
@@ -108,7 +109,7 @@ public class MlrWebservice {
 	public List<MonitoringLocation> getLocations(@QueryParam("query") final String query) {
 		//TODO: Convert query params to param map
 		Map<String, Object> params = new HashMap<>();
-		List<MonitoringLocation> fetchedLocations = MlrInstanceSingleton.getDataService().getMonitoringLocations(params);
+		List<MonitoringLocation> fetchedLocations = service.getMonitoringLocations(params);
 		
 		return fetchedLocations;
 	}

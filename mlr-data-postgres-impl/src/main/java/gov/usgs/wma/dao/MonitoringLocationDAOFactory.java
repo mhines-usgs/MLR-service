@@ -6,10 +6,14 @@ import java.util.Properties;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import gov.usgs.wma.util.ConfigurationLoaderSingleton;
 
 public class MonitoringLocationDAOFactory {
+	private static final Logger log = LoggerFactory.getLogger(MonitoringLocationDAOFactory.class);
+			
 	private static final Object syncLock = new Object();
 	
 	private static final String MONITORING_LOCATION_DATA_INTERFACE_PROPERTY = "ml.data.mybatis.interface";
@@ -46,7 +50,11 @@ public class MonitoringLocationDAOFactory {
 			String mybatisProperty = ConfigurationLoaderSingleton.getProperty(MONITORING_LOCATION_DATA_INTERFACE_PROPERTY);
 			String resource = mybatisProperty != null ? mybatisProperty : DEFAULT_MYBATIS_CONFIGURATION;
 			InputStream inputStream = Resources.getResourceAsStream(resource);
-
+			
+			log.info("DB host {}", properties.get("mlr.ml.dbHost"));
+			log.info("DB port {}", properties.get("mlr.ml.dbPort"));
+			log.info("DB name {}", properties.get("mlr.ml.dbName"));
+			log.info("DB user {}", properties.get("mlr.ml.dbUser"));
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, properties);
 			return sqlSessionFactory;
 			
