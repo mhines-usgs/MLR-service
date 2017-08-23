@@ -1,7 +1,0 @@
-CREATE ROLE monitoring_location_registry LOGIN ENCRYPTED PASSWORD ${password}
-	VALID UNTIL 'infinity' CONNECTION LIMIT -1;
-COMMENT ON ROLE monitoring_location_registry
-	IS 'login user/schema-owner for the Monitoring Location Registry System.';
-	
-CREATE SCHEMA monitoring_location_registry
-	AUTHORIZATION monitoring_location_registry;

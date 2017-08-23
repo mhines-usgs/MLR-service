@@ -83,7 +83,6 @@
 		<module>mlr-core</module>
 		<module>mlr-data-api</module>
 		<module>mlr-data-postgres-impl</module>
-		<module>mlr-database-schema</module>
 		<module>mlr-service-core</module>
 		<module>mlr-service</module>
 	</modules>
